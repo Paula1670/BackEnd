@@ -25,8 +25,9 @@ export class P010Service {
       );
 
       nuevoContrato = {
+        IDMiCuota: contrato.IDMiCuota,
         IDUsuario: Usuario.IDUsuario,
-        IDCuota: cuotaDelContrato.IDCuota,
+        IDCuota: cuotaDelContrato.IdCuota,
         NombreContrato: cuotaDelContrato.Nombre,
         FechaInicio: contrato.FechaInicio,
         FechaVencimiento: contrato.FechaVencimiento,
@@ -35,7 +36,6 @@ export class P010Service {
         NombreUsuario: Usuario.Nombre,
         ApellidoUsuario: Usuario.Apellido,
       };
-
       resultado.push(nuevoContrato);
     }
 

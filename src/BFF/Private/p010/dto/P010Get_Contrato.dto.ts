@@ -1,6 +1,7 @@
 import { EstadoEnum } from 'src/Constantes/EstadoEnum';
 
 export class P010Get_ContratoDto {
+  IDMiCuota: number;
   IDUsuario: number;
   IDCuota: number;
   NombreContrato: string;
@@ -12,6 +13,7 @@ export class P010Get_ContratoDto {
   ApellidoUsuario: string;
 
   constructor() {
+    this.IDMiCuota = 1;
     this.IDCuota = 1;
     this.IDUsuario = 1;
     this.NombreContrato = '';

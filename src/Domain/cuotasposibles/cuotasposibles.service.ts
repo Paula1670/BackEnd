@@ -67,7 +67,7 @@ export class CuotasposiblesService {
 
   private entityToDto(entity: CuotasPosiblesEntity): CuotasposibleDto {
     const cuotaDto = new CuotasposibleDto();
-
+    cuotaDto.IdCuota = entity.IDCuota;
     cuotaDto.Nombre = entity.Nombre;
     cuotaDto.Precio = entity.Precio;
     cuotaDto.Federado = entity.Federado;

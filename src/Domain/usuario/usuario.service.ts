@@ -278,4 +278,13 @@ export class UsuarioService {
       }),
     );
   }
+
+  async findByDirecccion(dir: string): Promise<UsuarioDto> {
+    return this.entityToDto(
+      await this.usuarioRepository.findOne({
+        where: { Direccion: dir },
+        relations: ['Nadador', 'Entrenador', 'Socio', 'juntaDirectiva'],
+      }),
+    );
+  }
 }

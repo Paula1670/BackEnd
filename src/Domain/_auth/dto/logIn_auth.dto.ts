@@ -1,4 +1,4 @@
 export class LogInAuthDto {
-  nombre: string;
+  direccion: string;
   contrasena: string;
 }

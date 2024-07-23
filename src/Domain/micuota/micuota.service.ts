@@ -82,6 +82,7 @@ export class MicuotaService {
   private entityToDto(entity: MisCuotasEntity): MicuotaDto {
     const cuotaDto = new MicuotaDto();
 
+    cuotaDto.IDMiCuota = entity.IDMiCuota;
     cuotaDto.Estado = entity.Estado;
     cuotaDto.FechaInicio = entity.FechaInicio;
     cuotaDto.FechaVencimiento = entity.FechaVencimiento;

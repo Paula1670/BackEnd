@@ -19,14 +19,14 @@ export class AuthService {
   async logIn(logInAuthDto: LogInAuthDto): Promise<LogInAuthResponseDto> {
     let user: UsuarioDto;
 
-    user = await this.usuarioService.findByNombre(logInAuthDto.nombre);
+    user = await this.usuarioService.findByDirecccion(logInAuthDto.direccion);
     if (!user)
       throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
 
     if (logInAuthDto.contrasena != user.Contrasena)
       throw new HttpException('Contraseña incorrecta', HttpStatus.UNAUTHORIZED);
 
-    const payload = { nombre: user.Nombre, sub: user.IDUsuario };
+    const payload = { direccion: user.Direccion, sub: user.IDUsuario };
     const token = this.jwtService.sign(payload);
 
     return {
