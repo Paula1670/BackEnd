@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
 import { P006Get_TiempoDto } from './dto/P006Get_Tiempo.dto';
-import { TiemposController } from 'src/domain/tiempos/tiempos.controller';
-import { TiempoDto } from 'src/domain/tiempos/dto/tiempo.dto';
-import { MinimaDto } from 'src/domain/minimas/dto/minima.dto';
+import { TiemposController } from 'src/Domain/tiempos/tiempos.controller';
+import { TiempoDto } from 'src/Domain/tiempos/dto/tiempo.dto';
+import { MinimaDto } from 'src/Domain/minimas/dto/minima.dto';
 
 @Injectable()
 export class P006Service {

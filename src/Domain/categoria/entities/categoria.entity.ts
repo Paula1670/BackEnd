@@ -1,7 +1,7 @@
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { NadadorEntity } from 'src/Domain/nadadores/entities/nadadore.entity';
-import { MinimasEntity } from 'src/domain/minimas/entities/minimas.entity';
-import { TiempoEntity } from 'src/domain/tiempos/entities/tiempo.entity';
+import { MinimasEntity } from 'src/Domain/minimas/entities/minimas.entity';
+import { TiempoEntity } from 'src/Domain/tiempos/entities/tiempo.entity';
 import {
   Column,
   Entity,

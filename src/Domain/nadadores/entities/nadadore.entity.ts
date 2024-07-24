@@ -1,8 +1,8 @@
 import { CategoriaEntity } from 'src/Domain/categoria/entities/categoria.entity';
 import { EntrenadorEntity } from 'src/Domain/entrenadores/entities/entrenadore.entity';
 import { SocioEntity } from 'src/Domain/socios/entities/socio.entity';
-import { TiempoEntity } from 'src/domain/tiempos/entities/tiempo.entity';
-import { UsuarioEntity } from 'src/domain/usuario/entities/usuario.entity';
+import { TiempoEntity } from 'src/Domain/tiempos/entities/tiempo.entity';
+import { UsuarioEntity } from 'src/Domain/usuario/entities/usuario.entity';
 import {
   Column,
   Entity,

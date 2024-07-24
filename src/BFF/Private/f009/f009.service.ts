@@ -11,7 +11,7 @@ import { CreateSocioDto } from 'src/Domain/socios/dto/create-socio.dto';
 import { F009GetSociosDto } from './dto/F009Get_SociosDto';
 import { CreateMicuotaDto } from 'src/Domain/micuota/dto/create-micuota.dto';
 import { EstadoEnum } from 'src/Constantes/EstadoEnum';
-import { CreateUsuarioDto } from 'src/domain/usuario/dto/create-usuario.dto';
+import { CreateUsuarioDto } from 'src/Domain/usuario/dto/create-usuario.dto';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { F009Get_EntrenadoresDto } from './dto/F009Get_EntrenadoresDto';
 

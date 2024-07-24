@@ -1,7 +1,7 @@
 import { JuntaDirectivaEntity } from 'src/Domain/juntadirectiva/entities/juntadirectiva.entity';
 import { MisCuotasEntity } from 'src/Domain/micuota/entities/micuota.entity';
 import { NadadorEntity } from 'src/Domain/nadadores/entities/nadadore.entity';
-import { UsuarioEntity } from 'src/domain/usuario/entities/usuario.entity';
+import { UsuarioEntity } from 'src/Domain/usuario/entities/usuario.entity';
 import {
   Column,
   Entity,

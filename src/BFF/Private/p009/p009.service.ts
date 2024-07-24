@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
 import { ActualizarCategoriaDeNadadorDto } from './dto/P009actualizarCategoriaDeNadador.dto';
 
-import { UsuarioDto } from 'src/domain/usuario/dto/usuario.dto';
+import { UsuarioDto } from 'src/Domain/usuario/dto/usuario.dto';
 import { P009Get_UserDto } from './dto/P009Get_UserDto';
 import { P009GetNadadorDto } from './dto/P009GetNadadorDto';
 import { P009GetEntrenadorDto } from './dto/P009GetEntrenadorDto';
