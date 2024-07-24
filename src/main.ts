@@ -8,6 +8,6 @@ async function bootstrap() {
   // Configurar el tamaño máximo permitido para las cargas útiles
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-  await app.listen(3000, '0.0.0.0'); // Escuchar en todas las interfaces de red
+  await app.listen(process.env.PORT || 3000, '0.0.0.0'); // Escuchar en todas las interfaces de red
 }
 bootstrap();
