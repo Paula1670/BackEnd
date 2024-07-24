@@ -50,14 +50,14 @@ import { FFooterModule } from './BFF/Public/f-footer/f-footer.module';
 @Module({
   imports: [
     //Local instance MySQL80
+
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
-      port: 3306,
-      username: 'krfrrl9t5kdwo180',
-      password: 'wkr3g1hkarxpp9sz',
-      database: 'vpdtmiaqb0huv6wo',
-
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT, 10),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [
         UsuarioEntity,
         TiempoEntity,
