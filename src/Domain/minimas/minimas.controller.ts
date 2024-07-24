@@ -10,7 +10,7 @@ import {
 import { MinimasService } from './minimas.service';
 import { CreateMinimaDto } from './dto/create-minima.dto';
 import { UpdateMinimaDto } from './dto/update-minima.dto';
-import { FiltrosMinimaDto } from './dto/Filtros_minima.dto';
+import { FiltrosMinimaDto } from './dto/filtros_minima.dto';
 
 @Controller('minimas')
 export class MinimasController {

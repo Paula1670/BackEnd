@@ -12,7 +12,7 @@ import {
   PiscinaEnum,
   PruebaEnum,
   TemporadaEnum,
-} from './dto/Filtros_minima.dto';
+} from './dto/filtros_minima.dto';
 
 @Injectable()
 export class MinimasService {
