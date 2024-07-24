@@ -52,11 +52,12 @@ import { FFooterModule } from './BFF/Public/f-footer/f-footer.module';
     //Local instance MySQL80
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
       port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'club',
+      username: 'krfrrl9t5kdwo180',
+      password: 'wkr3g1hkarxpp9sz',
+      database: 'vpdtmiaqb0huv6wo',
+
       entities: [
         UsuarioEntity,
         TiempoEntity,
