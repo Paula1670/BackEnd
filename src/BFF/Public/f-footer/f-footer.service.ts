@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateFFooterDto } from './dto/create-f-footer.dto';
 import { UpdateFFooterDto } from './dto/update-f-footer.dto';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class FFooterService {
@@ -10,7 +11,7 @@ export class FFooterService {
   async create(body: CreateFFooterDto) {
     try {
       const { status, data } = await this.httpClient.post(
-        'http://localhost:3000/datosContacto/create',
+        `${BACK_END_URL}/datosContacto/create`,
         { data: body },
       );
       return data;
@@ -22,7 +23,7 @@ export class FFooterService {
   async update(id: number, updateFooterDto: UpdateFFooterDto) {
     try {
       const { status, data } = await this.httpClient.patch(
-        'http://localhost:3000/datosContacto/edit/' + id,
+        `${BACK_END_URL}/datosContacto/edit/` + id,
         { data: updateFooterDto },
       );
 
@@ -35,7 +36,7 @@ export class FFooterService {
   async findOne(id: number) {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/datosContacto/findOne/' + id,
+        `${BACK_END_URL}/datosContacto/findOne/` + id,
       );
 
       return data;

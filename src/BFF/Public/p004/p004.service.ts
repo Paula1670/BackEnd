@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P004Service {
@@ -8,7 +9,7 @@ export class P004Service {
   async Get_Cuotas() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/cuotasposibles/getAll/',
+        `${BACK_END_URL}/cuotasposibles/getAll/`,
       );
 
       return data;
@@ -20,7 +21,7 @@ export class P004Service {
   async Delete_Cuota(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/cuotasposibles/delete/' + id,
+        `${BACK_END_URL}/cuotasposibles/delete/` + id,
       );
 
       return data;

@@ -4,6 +4,7 @@ import { UpdateF012Dto } from './dto/update-f012.dto';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
 import axios, { AxiosResponse } from 'axios';
 import { log } from 'console';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class F012Service {
@@ -12,7 +13,7 @@ export class F012Service {
   async create_Galeria(body: CreateF012Dto) {
     try {
       const { status, data } = await this.httpClient.post(
-        'http://localhost:3000/galeria/create',
+        `${BACK_END_URL}/galeria/create`,
         { data: body },
       );
       return data;
@@ -24,7 +25,7 @@ export class F012Service {
   async update_Galeria(id: number, updateF012Dto: UpdateF012Dto) {
     try {
       const { status, data } = await this.httpClient.patch(
-        'http://localhost:3000/galeria/edit/' + id,
+        `${BACK_END_URL}/galeria/edit/` + id,
         { data: updateF012Dto },
       );
 

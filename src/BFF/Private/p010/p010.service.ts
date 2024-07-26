@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
 import { P010Get_ContratoDto } from './dto/P010Get_Contrato.dto';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P010Service {
@@ -9,19 +10,18 @@ export class P010Service {
   async Get_Contratos() {
     let resultado: P010Get_ContratoDto[] = [];
     const { data: contratos } = await this.httpClient.get(
-      'http://localhost:3000/contratos/getAll/',
+      `${BACK_END_URL}/contratos/getAll/`,
     );
 
     let nuevoContrato: P010Get_ContratoDto;
 
     for (let contrato of contratos) {
       const { data: cuotaDelContrato } = await this.httpClient.get(
-        'http://localhost:3000/cuotasposibles/getById/' +
-          contrato.CuotasPosibles,
+        `${BACK_END_URL}/cuotasposibles/getById/` + contrato.CuotasPosibles,
       );
 
       const { data: Usuario } = await this.httpClient.get(
-        'http://localhost:3000/users/findUserBySocioId/' + contrato.Socio,
+        `${BACK_END_URL}/users/findUserBySocioId/` + contrato.Socio,
       );
 
       nuevoContrato = {
@@ -45,7 +45,7 @@ export class P010Service {
   async Delete_Contrato(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/contratos/delete/' + id,
+        `${BACK_END_URL}/contratos/delete/` + id,
       );
 
       return data;

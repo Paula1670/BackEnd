@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateP012Dto } from './dto/create-p012.dto';
 import { UpdateP012Dto } from './dto/update-p012.dto';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P012Service {
@@ -9,7 +10,7 @@ export class P012Service {
   async findAll() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/galeria/getAll/',
+        `${BACK_END_URL}/galeria/getAll/`,
       );
 
       return data;
@@ -21,7 +22,7 @@ export class P012Service {
   async remove(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/galeria/delete/' + id,
+        `${BACK_END_URL}/galeria/delete/` + id,
       );
 
       return data;

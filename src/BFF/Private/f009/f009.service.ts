@@ -14,6 +14,7 @@ import { EstadoEnum } from 'src/Constantes/EstadoEnum';
 import { CreateUsuarioDto } from 'src/Domain/usuario/dto/create-usuario.dto';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { F009Get_EntrenadoresDto } from './dto/F009Get_EntrenadoresDto';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class F009Service {
@@ -30,7 +31,7 @@ export class F009Service {
           nadadores: [],
         };
         const { data: socio } = await this.httpClient.post<SocioDto>(
-          'http://localhost:3000/socios/create',
+          `${BACK_END_URL}/socios/create`,
           { data: socioDto },
         );
         IDSOCIO = socio.idSocio;
@@ -47,7 +48,7 @@ export class F009Service {
         };
 
         const { data } = await this.httpClient.post(
-          'http://localhost:3000/contratos/create',
+          `${BACK_END_URL}/contratos/create`,
           { data: contrato },
         );
       }
@@ -59,7 +60,7 @@ export class F009Service {
         };
 
         const { data: nadador } = await this.httpClient.post<NadadorDto>(
-          'http://localhost:3000/nadadores/create',
+          `${BACK_END_URL}/nadadores/create`,
           { data: nadadorDto },
         );
         IDNADADOR = nadador.idNadador;
@@ -71,7 +72,7 @@ export class F009Service {
           //nadadores: [],
         };
         const { data } = await this.httpClient.post<EntrenadorDto>(
-          'http://localhost:3000/entrenadores/create',
+          `${BACK_END_URL}/entrenadores/create`,
           { data: entrenadorDto },
         );
         IDENTRENADOR = data.idEntrenador;
@@ -93,7 +94,7 @@ export class F009Service {
       };
 
       const { status, data } = await this.httpClient.post(
-        'http://localhost:3000/users/create',
+        `${BACK_END_URL}/users/create`,
         { data: User },
       );
 
@@ -106,7 +107,7 @@ export class F009Service {
   async Find_User(id: number) {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/getById/' + id,
+        `${BACK_END_URL}/users/getById/` + id,
       );
 
       return data;
@@ -118,7 +119,7 @@ export class F009Service {
   async Editar_User(id: number, updateF009Dto: F009Editar_UserDto) {
     try {
       const { status, data } = await this.httpClient.patch(
-        'http://localhost:3000/users/edit/' + id,
+        `${BACK_END_URL}/users/edit/` + id,
         { data: updateF009Dto },
       );
 
@@ -131,7 +132,7 @@ export class F009Service {
   async findCuotas() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/cuotasposibles/getAll',
+        `${BACK_END_URL}/cuotasposibles/getAll`,
       );
 
       return data;
@@ -143,14 +144,14 @@ export class F009Service {
   async findSocios(): Promise<F009GetSociosDto[]> {
     try {
       const { data: socios } = await this.httpClient.get(
-        'http://localhost:3000/socios/getAll',
+        `${BACK_END_URL}/socios/getAll`,
       );
 
       const nuevosSocios: F009GetSociosDto[] = [];
 
       for (let socio of socios) {
         const { data: usuario } = await this.httpClient.get(
-          'http://localhost:3000/users/findUserBySocioId/' + socio.idSocio,
+          `${BACK_END_URL}/users/findUserBySocioId/` + socio.idSocio,
         );
 
         const nuevoSocio: F009GetSociosDto = {
@@ -171,14 +172,14 @@ export class F009Service {
   async findEntrenadores(): Promise<F009Get_EntrenadoresDto[]> {
     try {
       const { data: entrenadores } = await this.httpClient.get(
-        'http://localhost:3000/entrenadores/getAll',
+        `${BACK_END_URL}/entrenadores/getAll`,
       );
 
       const nuevosEntrenadores: F009Get_EntrenadoresDto[] = [];
 
       for (let entrenador of entrenadores) {
         const { data: usuario } = await this.httpClient.get(
-          'http://localhost:3000/users/findUserByEntrenadorId/' +
+          `${BACK_END_URL}/users/findUserByEntrenadorId/` +
             entrenador.idEntrenador,
         );
 

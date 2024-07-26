@@ -7,6 +7,7 @@ import { UsuarioDto } from 'src/Domain/usuario/dto/usuario.dto';
 import { P009Get_UserDto } from './dto/P009Get_UserDto';
 import { P009GetNadadorDto } from './dto/P009GetNadadorDto';
 import { P009GetEntrenadorDto } from './dto/P009GetEntrenadorDto';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P009Service {
@@ -15,7 +16,7 @@ export class P009Service {
   async Get_UsersActivated() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/findAllActivated/',
+        `${BACK_END_URL}/users/findAllActivated/`,
       );
 
       return data;
@@ -27,7 +28,7 @@ export class P009Service {
   async FindById(id: number) {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/findById/' + id,
+        `${BACK_END_URL}/users/findById/` + id,
       );
 
       return data;
@@ -39,7 +40,7 @@ export class P009Service {
   async Get_UsersInactivated() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/findAllInactivated/',
+        `${BACK_END_URL}/users/findAllInactivated/`,
       );
 
       return data;
@@ -51,7 +52,7 @@ export class P009Service {
   async Delete_User(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/users/delete/' + id,
+        `${BACK_END_URL}/users/delete/` + id,
       );
 
       return data;
@@ -63,7 +64,7 @@ export class P009Service {
   async Activate_User(id: number) {
     try {
       const { status, data } = await this.httpClient.put(
-        'http://localhost:3000/users/activate/' + id,
+        `${BACK_END_URL}/users/activate/` + id,
       );
 
       return data;
@@ -75,7 +76,7 @@ export class P009Service {
   async findAllSocios() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/findUsersSocios/',
+        `${BACK_END_URL}/users/findUsersSocios/`,
       );
 
       let socios: P009Get_UserDto[] = [];
@@ -92,7 +93,7 @@ export class P009Service {
   async findAllNadadores() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/findUsersNadadores/',
+        `${BACK_END_URL}/users/findUsersNadadores/`,
       );
 
       let arrayNadadores: P009GetNadadorDto[] = [];
@@ -100,7 +101,7 @@ export class P009Service {
       for (let usuario of data) {
         if (usuario.Habilitado) {
           const { data: categorias } = await this.httpClient.get(
-            'http://localhost:3000/categorias/findCategoriaByNadador/' +
+            `${BACK_END_URL}/categorias/findCategoriaByNadador/` +
               usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
           );
 
@@ -127,7 +128,7 @@ export class P009Service {
   async findAllEntrenadores() {
     try {
       const { data } = await this.httpClient.get(
-        'http://localhost:3000/users/findUsersEntrenadores/',
+        `${BACK_END_URL}/users/findUsersEntrenadores/`,
       );
 
       let Arrayentrenadores: P009GetEntrenadorDto[] = [];
@@ -136,8 +137,7 @@ export class P009Service {
           // entrenadores.push(entrenador);
 
           const { data: especialidades } = await this.httpClient.get(
-            'http://localhost:3000/entrenadores/getById/' +
-              entrenador.Entrenador,
+            `${BACK_END_URL}/entrenadores/getById/` + entrenador.Entrenador,
           );
 
           const nuevoEntrenador: P009GetEntrenadorDto = {
@@ -168,7 +168,7 @@ export class P009Service {
         idCategoria: IDCategoria,
       };
       const { data } = await this.httpClient.put(
-        'http://localhost:3000/nadadores/actualizarCategoriaDeNadador',
+        `${BACK_END_URL}/nadadores/actualizarCategoriaDeNadador`,
         { data: nadadorDto },
       );
 
@@ -181,7 +181,7 @@ export class P009Service {
   async actualizarAllCategorias() {
     try {
       const { data } = await this.httpClient.get(
-        'http://localhost:3000/users/findUsersNadadores/',
+        `${BACK_END_URL}/users/findUsersNadadores/`,
       );
 
       for (let user of data) {
@@ -200,7 +200,7 @@ export class P009Service {
     const year = new Date(user.FechaNacimiento).getFullYear();
 
     const { data } = await this.httpClient.get<any[]>(
-      'http://localhost:3000/categorias/getAll',
+      `${BACK_END_URL}/categorias/getAll`,
     );
 
     let idCategoriaEncontrada = null;

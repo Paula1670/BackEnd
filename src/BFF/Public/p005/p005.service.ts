@@ -22,7 +22,7 @@ export class P005Service {
   async remove(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/documentacion/delete/' + id,
+        `${BACK_END_URL}/documentacion/delete/` + id,
       );
 
       return data;
@@ -33,7 +33,7 @@ export class P005Service {
   async findAllEsp() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/documentacion/findAllEsp/',
+        `${BACK_END_URL}/documentacion/findAllEsp/`,
       );
 
       return data;
@@ -45,7 +45,7 @@ export class P005Service {
   async findAllAnd() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/documentacion/findAllAnd/',
+        `${BACK_END_URL}/documentacion/findAllAnd/`,
       );
 
       return data;
@@ -57,7 +57,7 @@ export class P005Service {
   async findAllOtros() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/documentacion/findAllOtros/',
+        `${BACK_END_URL}/documentacion/findAllOtros/`,
       );
 
       return data;
@@ -69,7 +69,7 @@ export class P005Service {
   async findAllEstatutos() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/documentacion/findAllEstatutos/',
+        `${BACK_END_URL}/documentacion/findAllEstatutos/`,
       );
 
       return data;

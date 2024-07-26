@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P007Service {
@@ -8,7 +9,7 @@ export class P007Service {
   async Get_Minimas() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/minimas/getAll/',
+        `${BACK_END_URL}/minimas/getAll/`,
       );
 
       return data;
@@ -20,7 +21,7 @@ export class P007Service {
   async Delete_Minima(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/minimas/delete/' + id,
+        `${BACK_END_URL}/minimas/delete/` + id,
       );
 
       return data;
@@ -32,7 +33,7 @@ export class P007Service {
   async findMinimasByAno(year: number) {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/minimas/findMinimasByAno/' + year,
+        `${BACK_END_URL}/minimas/findMinimasByAno/` + year,
       );
 
       return data;
@@ -44,7 +45,7 @@ export class P007Service {
   async findMinimasByCategoria(categoria: number) {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/minimas/findMinimasByCategoria/' + categoria,
+        `${BACK_END_URL}/minimas/findMinimasByCategoria/` + categoria,
       );
 
       return data;

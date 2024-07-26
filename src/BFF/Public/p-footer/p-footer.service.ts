@@ -22,7 +22,7 @@ export class PFooterService {
   async remove(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/datosContacto/delete/' + id,
+        `${BACK_END_URL}/datosContacto/delete/` + id,
       );
 
       return data;

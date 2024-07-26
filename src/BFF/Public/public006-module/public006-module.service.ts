@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
 import { P006Get_TiempoDto } from '../public006-module/dto/P006Get_TiempoDto';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class Public006Service {
@@ -10,18 +11,18 @@ export class Public006Service {
     let records: P006Get_TiempoDto[] = [];
 
     const { data: tiempos } = await this.httpClient.get(
-      'http://localhost:3000/tiempos/obtenerMenorTiempoPorFiltros/',
+      `${BACK_END_URL}/tiempos/obtenerMenorTiempoPorFiltros/`,
     );
 
     let nuevoRecord: P006Get_TiempoDto;
 
     for (let tiempo of tiempos) {
       const { data: categoria } = await this.httpClient.get(
-        'http://localhost:3000/categorias/getById/' + tiempo.IDCategoria,
+        `${BACK_END_URL}/categorias/getById/` + tiempo.IDCategoria,
       );
 
       const { data: Usuario } = await this.httpClient.get(
-        'http://localhost:3000/users/findUserByNadadorId/' + tiempo.IDNadador,
+        `${BACK_END_URL}/users/findUserByNadadorId/` + tiempo.IDNadador,
       );
 
       nuevoRecord = {

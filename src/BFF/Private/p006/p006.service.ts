@@ -4,6 +4,7 @@ import { P006Get_TiempoDto } from './dto/P006Get_Tiempo.dto';
 import { TiemposController } from 'src/Domain/tiempos/tiempos.controller';
 import { TiempoDto } from 'src/Domain/tiempos/dto/tiempo.dto';
 import { MinimaDto } from 'src/Domain/minimas/dto/minima.dto';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P006Service {
@@ -12,7 +13,7 @@ export class P006Service {
   async Get_Tiempos(): Promise<P006Get_TiempoDto[]> {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/tiempos/getAll/',
+        `${BACK_END_URL}/tiempos/getAll/`,
       );
 
       return data;
@@ -25,7 +26,7 @@ export class P006Service {
     try {
       const { status: status1, data: tiemposNadador } =
         await this.httpClient.get(
-          'http://localhost:3000/tiempos/findAllByNadador/' + id,
+          `${BACK_END_URL}/tiempos/findAllByNadador/` + id,
         );
 
       let TiemposUsuario: P006Get_TiempoDto[] = [];
@@ -41,7 +42,7 @@ export class P006Service {
           categoria: tiempoNadador.IDCategoria,
         };
         const { status: status2, data: minima } = await this.httpClient.post(
-          'http://localhost:3000/minimas/findMinimasByFilters',
+          `${BACK_END_URL}/minimas/findMinimasByFilters`,
           { data: filter },
         );
 
@@ -59,7 +60,7 @@ export class P006Service {
   async Delete_Tiempo(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
-        'http://localhost:3000/tiempos/delete/' + id,
+        `${BACK_END_URL}/tiempos/delete/` + id,
       );
 
       return data;
