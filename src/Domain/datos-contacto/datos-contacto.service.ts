@@ -38,9 +38,6 @@ export class DatosContactoService {
 
   async findAll(): Promise<GetDatosContactoDto[]> {
     const contactosEntities = await this.datosRepository.find({});
-    console.log(contactosEntities);
-    console.log('                 ');
-    console.log(this.entitysToDtos(contactosEntities));
     return this.entitysToDtos(contactosEntities);
   }
 
