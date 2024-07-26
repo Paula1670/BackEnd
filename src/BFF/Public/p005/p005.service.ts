@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateP005Dto } from './dto/create-p005.dto';
 import { UpdateP005Dto } from './dto/update-p005.dto';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class P005Service {
@@ -9,8 +10,7 @@ export class P005Service {
   async findAll() {
     try {
       const { status, data } = await this.httpClient.get(
-        `${process.env.BACK_END}/documentacion/getAll` ||
-          'http://localhost:3000/documentacion/getAll/',
+        `${BACK_END_URL}/documentacion/getAll`,
       );
 
       return data;

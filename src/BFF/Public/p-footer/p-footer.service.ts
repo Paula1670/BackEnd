@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePFooterDto } from './dto/create-p-footer.dto';
 import { UpdatePFooterDto } from './dto/update-p-footer.dto';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
+import { BACK_END_URL } from 'src/Constantes/enviroment';
 
 @Injectable()
 export class PFooterService {
@@ -9,8 +10,7 @@ export class PFooterService {
   async findAll() {
     try {
       const { status, data } = await this.httpClient.get(
-        `${process.env.BACK_END}/datosContacto/getAll` ||
-          'http://localhost:3000/datosContacto/getAll/',
+        `${BACK_END_URL}/datosContacto/getAll`,
       );
 
       return data;
