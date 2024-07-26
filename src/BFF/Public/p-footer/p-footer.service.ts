@@ -9,7 +9,7 @@ export class PFooterService {
   async findAll() {
     try {
       const { status, data } = await this.httpClient.get(
-        process.env.BackEnd + '/datosContacto/getAll/' ||
+        `${process.env.BACK_END}/datosContacto/getAll` ||
           'http://localhost:3000/datosContacto/getAll/',
       );
 
