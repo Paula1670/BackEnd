@@ -9,9 +9,9 @@ export class PFooterService {
   async findAll() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/datosContacto/getAll/',
+        'https://nestapp-ea9cec2c16b6.herokuapp.com/datosContacto/getAll/',
       );
-
+      console.log(data);
       return data;
     } catch (error) {
       return error;
