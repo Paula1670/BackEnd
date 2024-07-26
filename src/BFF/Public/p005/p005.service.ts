@@ -9,7 +9,8 @@ export class P005Service {
   async findAll() {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/documentacion/getAll/',
+        `${process.env.BACK_END}/documentacion/getAll` ||
+          'http://localhost:3000/documentacion/getAll/',
       );
 
       return data;
