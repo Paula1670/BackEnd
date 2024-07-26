@@ -53,11 +53,11 @@ import { FFooterModule } from './BFF/Public/f-footer/f-footer.module';
 
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'zpfp07ebhm2zgmrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+      host: process.env.DATABASE_HOST || 'localhost',
       port: 3306,
-      username: 'krfrrl9t5kdwo180',
-      password: 'wkr3g1hkarxpp9sz',
-      database: 'vpdtmiaqb0huv6wo',
+      username: process.env.DATABASE_USERNAME || 'root',
+      password: process.env.DATABASE_PASSWORD || 'root',
+      database: process.env.DATABASE_NAME || 'club',
       entities: [
         UsuarioEntity,
         TiempoEntity,
