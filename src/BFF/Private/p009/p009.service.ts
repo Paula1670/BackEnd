@@ -24,17 +24,17 @@ export class P009Service {
     }
   }
 
-  /* async Get_Socios_NadadoresById(user: UsuarioDto) {
+  async FindById(id: number) {
     try {
       const { status, data } = await this.httpClient.get(
-        'http://localhost:3000/users/getById/' + user.IDUsuario,
+        'http://localhost:3000/users/findById/' + id,
       );
 
       return data;
     } catch (error) {
       return error;
     }
-  }*/
+  }
 
   async Get_UsersInactivated() {
     try {

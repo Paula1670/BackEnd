@@ -35,6 +35,11 @@ export class P009Controller {
     return this.p009Service.Activate_User(+id);
   }
 
+  @Get('/findById/:id')
+  FindById(@Param('id') id: string) {
+    return this.p009Service.FindById(+id);
+  }
+
   @Get('/findAllSocios')
   findAllSocios() {
     return this.p009Service.findAllSocios();
