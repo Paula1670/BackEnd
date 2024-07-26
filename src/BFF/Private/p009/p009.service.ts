@@ -24,6 +24,18 @@ export class P009Service {
     }
   }
 
+  /* async Get_Socios_NadadoresById(user: UsuarioDto) {
+    try {
+      const { status, data } = await this.httpClient.get(
+        'http://localhost:3000/users/getById/' + user.IDUsuario,
+      );
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }*/
+
   async Get_UsersInactivated() {
     try {
       const { status, data } = await this.httpClient.get(

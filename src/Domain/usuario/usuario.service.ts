@@ -230,6 +230,19 @@ export class UsuarioService {
     return this.entityToDto(usuario);
   }
 
+  /* async findNadadorByUserId(socioId: number): Promise<UsuarioDto> {
+    const usuario = await this.usuarioRepository.findOne({
+      where: { Socio: { idSocio: socioId } }, //Socio: variable de Usuario entity, idSocio: primarykey de Socio
+      relations: ['Nadador', 'Socio'],
+    });
+    if (!usuario) {
+      throw new NotFoundException(
+        `Usuario asociado al nadador con ID ${socioId} no encontrado`,
+      );
+    }
+    return this.entityToDto(usuario);
+  }*/
+
   //Obtener todos los socios
   async findUsersSocios(): Promise<UsuarioDto[]> {
     const UsuarioEntities = await this.usuarioRepository.find({
