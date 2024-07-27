@@ -23,11 +23,11 @@ export class P010Service {
       const { data: Usuario } = await this.httpClient.get(
         `${BACK_END_URL}/users/findUserBySocioId/` + contrato.Socio,
       );
-
+      console.log(cuotaDelContrato);
       nuevoContrato = {
         IDMiCuota: contrato.IDMiCuota,
         IDUsuario: Usuario.IDUsuario,
-        IDCuota: cuotaDelContrato.IdCuota,
+        tipoCuota: cuotaDelContrato.IdCuota,
         NombreContrato: cuotaDelContrato.Nombre,
         FechaInicio: contrato.FechaInicio,
         FechaVencimiento: contrato.FechaVencimiento,

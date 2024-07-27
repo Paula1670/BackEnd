@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { UsuarioService } from '../usuario/usuario.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from '../usuario/usuario.module';
+import { JuntadirectivaModule } from '../juntadirectiva/juntadirectiva.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UsuarioModule } from '../usuario/usuario.module';
       signOptions: { expiresIn: '1h' }, // Opciones de expiración del token
     }),
     UsuarioModule,
+    JuntadirectivaModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],

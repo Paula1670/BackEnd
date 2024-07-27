@@ -22,9 +22,9 @@ export class MisCuotasEntity {
   @ManyToOne(() => SocioEntity, (socio) => socio.cuotas)
   @JoinColumn({ name: 'socio' })
   socio: SocioEntity;
-  @ManyToOne(() => CuotasPosiblesEntity, (cuotaPosible) => cuotaPosible.cuotas)
+  @ManyToOne(() => CuotasPosiblesEntity, (tipoCuota) => tipoCuota.IDCuota)
   @JoinColumn({ name: 'tipoCuota' })
-  cuotaPosible: CuotasPosiblesEntity;
+  tipoCuota: CuotasPosiblesEntity;
 
   constructor() {
     this.IDMiCuota = 1;

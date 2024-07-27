@@ -27,8 +27,8 @@ export class JuntaDirectivaEntity {
 }
 
 export enum PuestoEnum {
-  Presidente = 'presidente',
-  Bicepresidente = 'Bicepresidente',
+  Presidente = 'Presidente',
+  Vicepresidente = 'Vicepresidente',
   Secretario = 'Secretario',
-  Vocal = 'vocal',
+  Vocal = 'Vocal',
 }

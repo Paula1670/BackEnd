@@ -43,7 +43,7 @@ export class F009Service {
             fechaActual.setMonth(fechaActual.getMonth() + 11),
           ),
           Estado: EstadoEnum.Pendiente,
-          CuotasPosibles: createF009Dto.idCuota,
+          tipoCuota: createF009Dto.idCuota,
           Socio: socio.idSocio,
         };
 

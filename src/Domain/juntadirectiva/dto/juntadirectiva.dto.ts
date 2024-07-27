@@ -9,14 +9,14 @@ export class JuntadirectivaDto {
   constructor() {
     this.fechaInicioCargo = new Date();
     this.fechaTerminoCargo = new Date();
-    this.puesto = PuestoEnum.Bicepresidente;
+    this.puesto = PuestoEnum.Vicepresidente;
     this.usuario = [];
   }
 }
 
 export enum PuestoEnum {
-  Presidente = 'presidente',
-  Bicepresidente = 'Bicepresidente',
+  Presidente = 'Presidente',
+  Vicepresidente = 'Vicepresidente',
   Secretario = 'Secretario',
-  Vocal = 'vocal',
+  Vocal = 'Vocal',
 }

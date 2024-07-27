@@ -17,7 +17,7 @@ export class CuotasPosiblesEntity {
   Precio: number;
   @Column()
   Federado: number;
-  @OneToMany(() => MisCuotasEntity, (cuota) => cuota.cuotaPosible)
+  @OneToMany(() => MisCuotasEntity, (cuota) => cuota.tipoCuota)
   @JoinColumn({ name: 'cuotas' })
   cuotas: MisCuotasEntity[];
   constructor() {
