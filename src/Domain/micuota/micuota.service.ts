@@ -17,7 +17,7 @@ export class MicuotaService {
 
   async create(createCuotaDto: CreateMicuotaDto) {
     let CuotasPosibles = new CuotasPosiblesEntity();
-    CuotasPosibles.IDCuota = createCuotaDto.tipoCuota;
+    CuotasPosibles.IDCuota = createCuotaDto.CuotasPosibles;
 
     let Socio = new SocioEntity();
     Socio.idSocio = createCuotaDto.Socio;
@@ -26,7 +26,7 @@ export class MicuotaService {
       FechaInicio: createCuotaDto.FechaInicio,
       FechaVencimiento: createCuotaDto.FechaVencimiento,
       Estado: createCuotaDto.Estado,
-      tipoCuota: CuotasPosibles,
+      cuotaPosible: CuotasPosibles,
       socio: Socio,
     });
 
@@ -40,7 +40,7 @@ export class MicuotaService {
     const cuotas = await this.cuotasRepository.findOneBy({ IDMiCuota: id });
 
     let CuotasPosibles = new CuotasPosiblesEntity();
-    CuotasPosibles.IDCuota = updateCuotaDto.tipoCuota;
+    CuotasPosibles.IDCuota = updateCuotaDto.CuotasPosibles;
 
     let Socio = new SocioEntity();
     Socio.idSocio = updateCuotaDto.Socio;
@@ -57,7 +57,7 @@ export class MicuotaService {
 
   async findAll(): Promise<MicuotaDto[]> {
     const CuotaEntities = await this.cuotasRepository.find({
-      relations: ['tipoCuota', 'socio'],
+      relations: ['cuotaPosible', 'socio'],
     });
 
     return this.entitysToDtos(CuotaEntities);
@@ -67,7 +67,7 @@ export class MicuotaService {
     return this.entityToDto(
       await this.cuotasRepository.findOne({
         where: { IDMiCuota: id },
-        relations: ['tipoCuota', 'socio'],
+        relations: ['cuotaPosible', 'socio'],
       }),
     );
   }
@@ -88,7 +88,9 @@ export class MicuotaService {
     cuotaDto.FechaVencimiento = entity.FechaVencimiento;
 
     cuotaDto.Socio = entity.socio ? entity.socio.idSocio : null;
-    cuotaDto.tipoCuota = entity.tipoCuota ? entity.tipoCuota.IDCuota : null;
+    cuotaDto.CuotasPosibles = entity.cuotaPosible
+      ? entity.cuotaPosible.IDCuota
+      : null;
 
     return cuotaDto;
   }

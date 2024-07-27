@@ -8,6 +8,5 @@ import { JuntaDirectivaEntity } from './entities/juntadirectiva.entity';
   imports: [TypeOrmModule.forFeature([JuntaDirectivaEntity])],
   controllers: [JuntadirectivaController],
   providers: [JuntadirectivaService],
-  exports: [JuntadirectivaService],
 })
 export class JuntadirectivaModule {}

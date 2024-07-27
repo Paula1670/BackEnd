@@ -5,7 +5,7 @@ export class MicuotaDto {
   FechaInicio: Date;
   FechaVencimiento: Date;
   Socio: number;
-  tipoCuota: number;
+  CuotasPosibles: number;
   Estado: EstadoEnum;
 
   constructor() {
@@ -13,7 +13,7 @@ export class MicuotaDto {
     this.FechaInicio = new Date();
     this.FechaVencimiento = new Date();
     this.Socio = 1;
-    this.tipoCuota = 2; // Ajusta el valor predeterminado según tu enumeración
+    this.CuotasPosibles = 2; // Ajusta el valor predeterminado según tu enumeración
     this.Estado = EstadoEnum.Pagado; // Ajusta el valor predeterminado según tu enumeración
   }
 }
