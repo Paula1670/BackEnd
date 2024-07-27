@@ -50,10 +50,7 @@ export class UsuarioEntity {
   @JoinColumn({ name: 'socio' })
   Socio: SocioEntity;
 
-  @ManyToOne(
-    () => JuntaDirectivaEntity,
-    (juntaDirectiva) => juntaDirectiva.usuario,
-  )
+  @OneToOne(() => JuntaDirectivaEntity, { nullable: true })
   @JoinColumn({ name: 'juntaDirectiva' })
   juntaDirectiva: JuntaDirectivaEntity;
 

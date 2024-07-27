@@ -30,7 +30,7 @@ export class P009Service {
       const { status, data } = await this.httpClient.get(
         `${BACK_END_URL}/users/findById/` + id,
       );
-
+      console.log(data);
       return data;
     } catch (error) {
       return error;

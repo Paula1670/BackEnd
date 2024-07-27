@@ -61,6 +61,11 @@ export class UsuarioController {
     return this.usuarioService.findUserByNadadorId(+id);
   }
 
+  @Get('/findByIdSocio/:id')
+  findByIdSocio(@Param('id') id: string) {
+    return this.usuarioService.findByIdSocio(+id);
+  }
+
   @Get('/findById/:id')
   findById(@Param('id') id: string) {
     return this.usuarioService.findById(+id);

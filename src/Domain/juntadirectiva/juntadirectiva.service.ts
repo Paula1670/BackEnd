@@ -17,21 +17,11 @@ export class JuntadirectivaService {
   async create(
     createJuntaDto: CreateJuntadirectivaDto,
   ): Promise<JuntaDirectivaEntity> {
-    let Usuarios: UsuarioEntity[] = [];
-    let Usuario = new UsuarioEntity();
-
-    for (let iduser of createJuntaDto.usuario) {
-      Usuario.IDUsuario = iduser;
-      Usuarios.push(Usuario);
-    }
-
     const newJunta = await this.juntaRepository.save({
       fechaInicioCargo: createJuntaDto.fechaInicioCargo,
       fechaTerminoCargo: createJuntaDto.fechaTerminoCargo,
       puesto: createJuntaDto.puesto,
-      usuario: Usuarios,
     });
-
     return newJunta;
   }
 
@@ -41,21 +31,11 @@ export class JuntadirectivaService {
   ): Promise<JuntaDirectivaEntity> {
     const junta = await this.juntaRepository.findOneBy({ idMiembroJunta: id });
 
-    let Usuarios: UsuarioEntity[] = [];
-    let Usuario = new UsuarioEntity();
-
-    for (let iduser of updateJuntaDto.usuario) {
-      Usuario.IDUsuario = iduser;
-      Usuarios.push(Usuario);
-    }
-
     if (!junta) throw new NotFoundException('Este post no existe');
     const editedJunta: JuntaDirectivaEntity = Object.assign(
       junta,
       updateJuntaDto,
     );
-
-    editedJunta.usuario = Usuarios;
 
     return await this.juntaRepository.save(editedJunta);
   }
@@ -69,10 +49,10 @@ export class JuntadirectivaService {
   }
 
   async findOne(id: number): Promise<JuntadirectivaDto> {
+    console.log(id);
     return this.entityToDto(
       await this.juntaRepository.findOne({
         where: { idMiembroJunta: id },
-        relations: ['usuario'],
       }),
     );
   }
@@ -84,15 +64,13 @@ export class JuntadirectivaService {
   }
 
   private entityToDto(entity: JuntaDirectivaEntity): JuntadirectivaDto {
-    const juntaDto = new JuntadirectivaDto();
-
-    let Usuarios: UsuarioEntity[] = [];
-
-    for (let Usuario of Usuarios) {
-      juntaDto.usuario.push(Usuario.IDUsuario);
-    }
-
-    return juntaDto;
+    console.log(entity);
+    return {
+      idMiembroJunta: entity.idMiembroJunta,
+      fechaInicioCargo: entity.fechaInicioCargo,
+      fechaTerminoCargo: entity.fechaTerminoCargo,
+      puesto: entity.puesto,
+    };
   }
 
   private entitysToDtos(entitys: JuntaDirectivaEntity[]): JuntadirectivaDto[] {

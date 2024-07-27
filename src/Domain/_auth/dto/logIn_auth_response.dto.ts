@@ -1,5 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { LogInAuthDto } from './logIn_auth.dto';
+import { PuestoEnum } from 'src/Constantes/PuestoEnum';
 
 export class LogInAuthResponseDto {
   token: string;
@@ -12,10 +13,4 @@ export class LogInAuthResponseDto {
   juntaDirectiva: boolean;
   socio: boolean;
   miembroPuesto: PuestoEnum;
-}
-export enum PuestoEnum {
-  Presidente = 'Presidente',
-  Vicepresidente = 'Vicepresidente',
-  Secretario = 'Secretario',
-  Vocal = 'Vocal',
 }

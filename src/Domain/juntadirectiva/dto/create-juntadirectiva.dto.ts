@@ -1,22 +1,16 @@
+import { PuestoEnum } from 'src/Constantes/PuestoEnum';
 import { SocioDto } from 'src/Domain/socios/dto/socio.dto';
 
 export class CreateJuntadirectivaDto {
   fechaInicioCargo: Date;
   fechaTerminoCargo: Date;
   puesto: PuestoEnum;
-  usuario: number[];
+  idUsuario: number;
 
   constructor() {
     this.fechaInicioCargo = new Date();
     this.fechaTerminoCargo = new Date();
-    this.puesto = PuestoEnum.Bicepresidente;
-    this.usuario = [];
+    this.puesto = PuestoEnum.Presidente;
+    this.idUsuario = 1;
   }
-}
-
-export enum PuestoEnum {
-  Presidente = 'presidente',
-  Bicepresidente = 'Bicepresidente',
-  Secretario = 'Secretario',
-  Vocal = 'vocal',
 }

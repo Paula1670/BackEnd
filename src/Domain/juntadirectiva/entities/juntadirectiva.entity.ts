@@ -1,3 +1,4 @@
+import { PuestoEnum } from 'src/Constantes/PuestoEnum';
 import { EntrenadorEntity } from 'src/Domain/entrenadores/entities/entrenadore.entity';
 import { NadadorEntity } from 'src/Domain/nadadores/entities/nadadore.entity';
 import { SocioEntity } from 'src/Domain/socios/entities/socio.entity';
@@ -21,14 +22,4 @@ export class JuntaDirectivaEntity {
   fechaTerminoCargo: Date;
   @Column()
   puesto: PuestoEnum;
-  @OneToMany(() => UsuarioEntity, (usuario) => usuario.juntaDirectiva)
-  @JoinColumn({ name: 'usuario' })
-  usuario: UsuarioEntity[];
-}
-
-export enum PuestoEnum {
-  Presidente = 'presidente',
-  Bicepresidente = 'Bicepresidente',
-  Secretario = 'Secretario',
-  Vocal = 'vocal',
 }

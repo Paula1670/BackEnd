@@ -230,7 +230,7 @@ export class UsuarioService {
     return this.entityToDto(usuario);
   }
 
-  async findById(socioId: number): Promise<UsuarioDto> {
+  async findByIdSocio(socioId: number): Promise<UsuarioDto> {
     const usuario = await this.usuarioRepository.findOne({
       where: { Socio: { idSocio: socioId } }, //Socio: variable de Usuario entity, idSocio: primarykey de Socio
       relations: ['Nadador', 'Socio'],
@@ -238,6 +238,19 @@ export class UsuarioService {
     if (!usuario) {
       throw new NotFoundException(
         `Usuario asociado al nadador con ID ${socioId} no encontrado`,
+      );
+    }
+    return this.entityToDto(usuario);
+  }
+
+  async findById(Id: number): Promise<UsuarioDto> {
+    const usuario = await this.usuarioRepository.findOne({
+      where: { IDUsuario: Id }, //Socio: variable de Usuario entity, idSocio: primarykey de Socio
+      relations: ['Nadador', 'Entrenador', 'Socio', 'juntaDirectiva'],
+    });
+    if (!usuario) {
+      throw new NotFoundException(
+        `Usuario asociado al nadador con ID ${Id} no encontrado`,
       );
     }
     return this.entityToDto(usuario);
