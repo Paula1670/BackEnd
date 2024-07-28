@@ -22,4 +22,14 @@ export class P010Controller {
   Delete_Contrato(@Param('id') id: string) {
     return this.p010Service.Delete_Contrato(+id);
   }
+
+  /*@Get('/Get_ContratosBySocio/:id')
+  Get_ContratosBySocio(@Param('id') id: string) {
+    return this.p010Service.Get_ContratosBySocio(id);
+  }*/
+
+  @Get('/Get_ContratosByUsuario/:id')
+  Get_ContratosByUsuario(@Param('id') id: string) {
+    return this.p010Service.Get_ContratosByUsuario(id);
+  }
 }

@@ -29,6 +29,7 @@ export class MicuotaService {
       cuotaPosible: CuotasPosibles,
       socio: Socio,
     });
+    console.log(newCuota);
 
     return newCuota;
   }
@@ -70,6 +71,24 @@ export class MicuotaService {
         relations: ['cuotaPosible', 'socio'],
       }),
     );
+  }
+
+  async getBySocio(socioId: number): Promise<MicuotaDto[]> {
+    // Obtener todos los contratos del socio especificado
+    const contratos = await this.cuotasRepository.find({
+      where: { socio: { idSocio: socioId } }, // Socio: variable de Usuario entity, idSocio: primary key de Socio
+      relations: ['cuotaPosible', 'socio'],
+    });
+
+    // Lanzar una excepción si no se encontraron contratos
+    if (!contratos || contratos.length === 0) {
+      throw new NotFoundException(
+        `Contratos asociados al socio con ID ${socioId} no encontrados`,
+      );
+    }
+
+    // Transformar las entidades en DTOs
+    return contratos.map((contrato) => this.entityToDto(contrato));
   }
 
   async remove(id: number) {

@@ -30,6 +30,11 @@ export class MicuotaController {
     return this.micuotaService.findOne(+id);
   }
 
+  @Get('/getBySocio/:id')
+  getBySocio(@Param('id') id: string) {
+    return this.micuotaService.getBySocio(+id);
+  }
+
   @Patch('/edit/:id')
   update(@Param('id') id: string, @Body() updateMicuotaDto: UpdateMicuotaDto) {
     return this.micuotaService.update(+id, updateMicuotaDto);
