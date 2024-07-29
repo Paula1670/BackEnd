@@ -1,20 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { F006Create_TiempoDto } from './dto/F006Create_TiempoDto';
 import { F006Editar_TiempoDto } from './dto/F006Editar_TiempoDto';
 import { HttpClientService } from '@tresdoce/nestjs-httpclient';
 import { BACK_END_URL } from 'src/Constantes/enviroment';
+import { NadadorDto } from 'src/Domain/nadadores/dto/nadador.dto';
+import { F006CreateTiempoDto } from './dto/F006Create_TiempoDto';
+import { CreateTiempoDto } from 'src/Domain/tiempos/dto/create-tiempo.dto';
 
 @Injectable()
 export class F006Service {
   constructor(private readonly httpClient: HttpClientService) {}
-  async Create_Tiempo(createF006Dto: F006Create_TiempoDto) {
+  async Create_Tiempo(createF006Dto: F006CreateTiempoDto) {
     try {
-      const { status, data } = await this.httpClient.post(
-        `${BACK_END_URL}/tiempos/create`,
-        { data: createF006Dto },
+      const { data: nadador } = await this.httpClient.get<NadadorDto>(
+        `${BACK_END_URL}/nadadores/getById/` + createF006Dto.IDNadador,
       );
 
-      return data;
+      const { data: usuario } = await this.httpClient.get<NadadorDto>(
+        `${BACK_END_URL}/users/findUserByNadadorId/` + createF006Dto.IDNadador,
+      );
+      console.log(nadador);
+
+      const newTiempo: CreateTiempoDto = {
+        IDNadador: nadador.idNadador,
+        Tiempo: createF006Dto.Tiempo,
+        Temporada: createF006Dto.Temporada,
+        Prueba: createF006Dto.Prueba,
+        Piscina: createF006Dto.Piscina,
+        FechaMarcaNadador: createF006Dto.FechaMarcaNadador,
+        Estilo: createF006Dto.Estilo,
+        IDCategoria: nadador.Categoria,
+      };
+      console.log(newTiempo);
+      const { data: tiempo } = await this.httpClient.post(
+        `${BACK_END_URL}/tiempos/create`,
+        { data: newTiempo },
+      );
+
+      return tiempo;
     } catch (error) {
       return error;
     }

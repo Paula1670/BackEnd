@@ -1,3 +1,8 @@
+import { EstiloEnum } from 'src/Constantes/EstiloEnum';
+import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
+import { PruebaEnum } from 'src/Constantes/PruebaEnum';
+import { TemporadaEnum } from 'src/Constantes/TemporadaEnum';
+
 export class CreateTiempoDto {
   IDNadador: number;
   Tiempo: string;
@@ -18,30 +23,4 @@ export class CreateTiempoDto {
     this.Estilo = EstiloEnum.Braza;
     this.IDCategoria = 1;
   }
-}
-
-export enum TemporadaEnum {
-  Invierno = 'invierno',
-  Verano = 'verano',
-}
-
-export enum PruebaEnum {
-  Metros50 = '50',
-  Metros100 = '100',
-  Metros200 = '200',
-  Metros400 = '400',
-  Metros800 = '800',
-  Metros1500 = '1500',
-}
-
-export enum PiscinaEnum {
-  Metros25 = '25m',
-  Metros50 = '50m',
-}
-
-export enum EstiloEnum {
-  Braza = 'braza',
-  Crol = 'crol',
-  Espalda = 'espalda',
-  Mariposa = 'mariposa',
 }

@@ -18,9 +18,14 @@ export class P006Controller {
     return this.p006Service.Get_Tiempos();
   }
 
-  @Get('/findAllByNadador/:id')
-  findAllByNadador(@Param('id') id: string) {
-    return this.p006Service.findAllByNadador(+id);
+  @Get('/findAllByUserId/:id')
+  findAllByUserId(@Param('id') id: string) {
+    return this.p006Service.findAllByUserId(+id);
+  }
+
+  @Get('/findMinimasByNadador/:id')
+  findMinimasByNadador(@Param('id') id: string) {
+    return this.p006Service.findMinimasByNadador(+id);
   }
 
   @Delete('/Delete_Tiempo/:id')

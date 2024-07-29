@@ -1,4 +1,9 @@
+import { CategoriaEnum } from 'src/Constantes/CategoriaEnum';
+import { EstiloEnum } from 'src/Constantes/EstiloEnum';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
+import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
+import { PruebaEnum } from 'src/Constantes/PruebaEnum';
+import { TemporadaEnum } from 'src/Constantes/TemporadaEnum';
 
 export class F007Get_MinimaDto {
   TiempoMinimo: string;
@@ -18,39 +23,4 @@ export class F007Get_MinimaDto {
     this.Estilo = EstiloEnum.Braza;
     this.Genero = GeneroEnum.Femenino;
   }
-}
-
-export enum TemporadaEnum {
-  Invierno = 'invierno',
-  Verano = 'verano',
-}
-
-export enum PruebaEnum {
-  Metros50 = '50',
-  Metros100 = '100',
-  Metros200 = '200',
-  Metros400 = '400',
-  Metros800 = '800',
-  Metros1500 = '1500',
-}
-
-export enum PiscinaEnum {
-  Metros25 = '25m',
-  Metros50 = '50m',
-}
-
-export enum CategoriaEnum {
-  Prebenjamin = 'prebenjamin',
-  benjamin = 'benjamin',
-  Alevin = 'alevin',
-  Infantil = 'infantil',
-  Junior = 'junior',
-  Absoluto = 'absoluto',
-}
-
-export enum EstiloEnum {
-  Braza = 'braza',
-  Crol = 'crol',
-  Espalda = 'espalda',
-  Mariposa = 'mariposa',
 }

@@ -15,6 +15,7 @@ import { CreateUsuarioDto } from 'src/Domain/usuario/dto/create-usuario.dto';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { F009Get_EntrenadoresDto } from './dto/F009Get_EntrenadoresDto';
 import { BACK_END_URL } from 'src/Constantes/enviroment';
+import { F009GetNadadoresDto } from './dto/F009Get_NadadoresDto';
 
 @Injectable()
 export class F009Service {
@@ -164,6 +165,36 @@ export class F009Service {
       }
 
       return nuevosSocios;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findNadadores(): Promise<F009GetNadadoresDto[]> {
+    try {
+      const { data: nadadores } = await this.httpClient.get(
+        `${BACK_END_URL}/users/findUsersNadadores`,
+      );
+
+      console.log(nadadores);
+      const nuevosNadadores: F009GetNadadoresDto[] = [];
+
+      for (let nadador of nadadores) {
+        const { data: usuario } = await this.httpClient.get(
+          `${BACK_END_URL}/users/findUserByNadadorId/` + nadador.Nadador,
+        );
+        console.log(nadador);
+
+        const nuevoNadador: F009GetNadadoresDto = {
+          IDNadador: nadador.Nadador,
+          nombreUsuario: usuario.Nombre,
+          apellidoUsuario: usuario.Apellido,
+        };
+
+        nuevosNadadores.push(nuevoNadador);
+      }
+
+      return nuevosNadadores;
     } catch (error) {
       throw error;
     }

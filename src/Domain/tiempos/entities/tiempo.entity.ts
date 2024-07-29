@@ -1,3 +1,7 @@
+import { EstiloEnum } from 'src/Constantes/EstiloEnum';
+import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
+import { PruebaEnum } from 'src/Constantes/PruebaEnum';
+import { TemporadaEnum } from 'src/Constantes/TemporadaEnum';
 import { CategoriaEntity } from 'src/Domain/categoria/entities/categoria.entity';
 import { NadadorEntity } from 'src/Domain/nadadores/entities/nadadore.entity';
 import {
@@ -42,38 +46,4 @@ export class TiempoEntity {
     this.FechaMarcaNadador = new Date();
     this.Estilo = EstiloEnum.Braza;
   }
-}
-
-export enum TemporadaEnum {
-  Invierno = 'invierno',
-  Verano = 'verano',
-}
-
-export enum PruebaEnum {
-  Metros50 = '50',
-  Metros100 = '100',
-  Metros200 = '200',
-  Metros400 = '400',
-  Metros800 = '800',
-  Metros1500 = '1500',
-}
-
-export enum PiscinaEnum {
-  Metros25 = '25m',
-  Metros50 = '50m',
-}
-
-export enum CategoriaEnum {
-  benjamin = 'benjamin',
-  Alevin = 'alevin',
-  Infantil = 'infantil',
-  Junior = 'junior',
-  Absoluto = 'absoluto',
-}
-
-export enum EstiloEnum {
-  Braza = 'braza',
-  Crol = 'crol',
-  Espalda = 'espalda',
-  Mariposa = 'mariposa',
 }

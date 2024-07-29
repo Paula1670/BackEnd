@@ -6,13 +6,7 @@ import { Repository } from 'typeorm';
 import { MinimaDto } from './dto/minima.dto';
 import { CategoriaEntity } from '../categoria/entities/categoria.entity';
 import { CreateMinimaDto } from './dto/create-minima.dto';
-import {
-  EstiloEnum,
-  FiltrosMinimaDto,
-  PiscinaEnum,
-  PruebaEnum,
-  TemporadaEnum,
-} from './dto/filtros_minima.dto';
+import { FiltrosMinimaDto } from './dto/filtros_minima.dto';
 
 @Injectable()
 export class MinimasService {

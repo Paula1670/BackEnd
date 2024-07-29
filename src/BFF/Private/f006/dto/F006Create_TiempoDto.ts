@@ -1,47 +1,24 @@
-import { GeneroEnum } from 'src/Constantes/GeneroEnum';
+import { EstiloEnum } from 'src/Constantes/EstiloEnum';
+import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
+import { PruebaEnum } from 'src/Constantes/PruebaEnum';
+import { TemporadaEnum } from 'src/Constantes/TemporadaEnum';
 
-export class F006Create_TiempoDto {
+export class F006CreateTiempoDto {
+  IDNadador: number;
   Tiempo: string;
   Temporada: TemporadaEnum;
   Prueba: PruebaEnum;
   Piscina: PiscinaEnum;
-  Categoria: CategoriaEnum;
   Estilo: EstiloEnum;
-  Genero: GeneroEnum;
-  IDCategoria: number;
-}
+  FechaMarcaNadador: Date;
 
-export enum TemporadaEnum {
-  Invierno = 'invierno',
-  Verano = 'verano',
-}
-
-export enum PruebaEnum {
-  Metros50 = '50',
-  Metros100 = '100',
-  Metros200 = '200',
-  Metros400 = '400',
-  Metros800 = '800',
-  Metros1500 = '1500',
-}
-
-export enum PiscinaEnum {
-  Metros25 = '25m',
-  Metros50 = '50m',
-}
-
-export enum CategoriaEnum {
-  Prebenjamin = 'prebenjamin',
-  benjamin = 'benjamin',
-  Alevin = 'alevin',
-  Infantil = 'infantil',
-  Junior = 'junior',
-  Absoluto = 'absoluto',
-}
-
-export enum EstiloEnum {
-  Braza = 'braza',
-  Crol = 'crol',
-  Espalda = 'espalda',
-  Mariposa = 'mariposa',
+  constructor() {
+    this.IDNadador = 1;
+    this.Tiempo = '00:00:00';
+    this.Temporada = TemporadaEnum.Invierno;
+    this.Prueba = PruebaEnum.Metros200;
+    this.Piscina = PiscinaEnum.Metros50;
+    this.Estilo = EstiloEnum.Braza;
+    this.FechaMarcaNadador = new Date();
+  }
 }

@@ -21,7 +21,7 @@ export class TiemposService {
 
     let Categoria = new CategoriaEntity();
     Categoria.IDCategoria = createTiempoDto.IDCategoria;
-
+    console.log();
     const newTiempo = await this.tiempoRepository.save({
       Nadador: Nadador,
       Tiempo: createTiempoDto.Tiempo,

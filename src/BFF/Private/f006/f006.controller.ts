@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { F006Service } from './f006.service';
-import { F006Create_TiempoDto } from './dto/F006Create_TiempoDto';
+import { F006CreateTiempoDto } from './dto/F006Create_TiempoDto';
 import { F006Editar_TiempoDto } from './dto/F006Editar_TiempoDto';
 
 @Controller('f006')
@@ -16,7 +16,7 @@ export class F006Controller {
   constructor(private readonly f006Service: F006Service) {}
 
   @Post('Create_Tiempo')
-  Create_Tiempo(@Body() createF006Dto: F006Create_TiempoDto) {
+  Create_Tiempo(@Body() createF006Dto: F006CreateTiempoDto) {
     return this.f006Service.Create_Tiempo(createF006Dto);
   }
 

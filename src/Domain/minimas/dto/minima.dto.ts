@@ -1,4 +1,8 @@
+import { EstiloEnum } from 'src/Constantes/EstiloEnum';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
+import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
+import { PruebaEnum } from 'src/Constantes/PruebaEnum';
+import { TemporadaEnum } from 'src/Constantes/TemporadaEnum';
 
 export class MinimaDto {
   IDMinima: number;
@@ -24,34 +28,10 @@ export class MinimaDto {
   }
 }
 
-export enum TemporadaEnum {
-  Invierno = 'invierno',
-  Verano = 'verano',
-}
 export enum CampeonatoEnum {
   Regional = 'regional',
   Nacional = 'nacional',
   Continental = 'continental',
   Mundial = 'mundial',
   Olimpico = 'olimpico',
-}
-export enum PruebaEnum {
-  Metros50 = '50',
-  Metros100 = '100',
-  Metros200 = '200',
-  Metros400 = '400',
-  Metros800 = '800',
-  Metros1500 = '1500',
-}
-
-export enum PiscinaEnum {
-  Metros25 = '25m',
-  Metros50 = '50m',
-}
-
-export enum EstiloEnum {
-  Braza = 'braza',
-  Crol = 'crol',
-  Espalda = 'espalda',
-  Mariposa = 'mariposa',
 }

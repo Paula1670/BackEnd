@@ -43,6 +43,11 @@ export class F009Controller {
     return this.f009Service.findSocios();
   }
 
+  @Get('/findNadadores')
+  findNadadores() {
+    return this.f009Service.findNadadores();
+  }
+
   @Get('/findEntrenadores')
   findEntrenadores() {
     return this.f009Service.findEntrenadores();
