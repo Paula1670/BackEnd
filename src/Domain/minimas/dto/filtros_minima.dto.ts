@@ -1,3 +1,4 @@
+import { CampeonatoEnum } from 'src/Constantes/CampeonatoEnum';
 import { EstiloEnum } from 'src/Constantes/EstiloEnum';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
@@ -13,12 +14,4 @@ export class FiltrosMinimaDto {
   genero?: GeneroEnum;
   categoria?: number;
   campeonato?: CampeonatoEnum;
-}
-
-export enum CampeonatoEnum {
-  Regional = 'regional',
-  Nacional = 'nacional',
-  Continental = 'continental',
-  Mundial = 'mundial',
-  Olimpico = 'olimpico',
 }

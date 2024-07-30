@@ -1,3 +1,4 @@
+import { CampeonatoEnum } from 'src/Constantes/CampeonatoEnum';
 import { EstiloEnum } from 'src/Constantes/EstiloEnum';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
@@ -50,12 +51,4 @@ export class MinimasEntity {
     this.FechaVigenciaMinima = new Date();
     this.Campeonato = CampeonatoEnum.Continental;
   }
-}
-
-export enum CampeonatoEnum {
-  Regional = 'regional',
-  Nacional = 'nacional',
-  Continental = 'continental',
-  Mundial = 'mundial',
-  Olimpico = 'olimpico',
 }
