@@ -49,7 +49,6 @@ export class JuntadirectivaService {
   }
 
   async findOne(id: number): Promise<JuntadirectivaDto> {
-    console.log(id);
     return this.entityToDto(
       await this.juntaRepository.findOne({
         where: { idMiembroJunta: id },
@@ -64,7 +63,6 @@ export class JuntadirectivaService {
   }
 
   private entityToDto(entity: JuntaDirectivaEntity): JuntadirectivaDto {
-    console.log(entity);
     return {
       idMiembroJunta: entity.idMiembroJunta,
       fechaInicioCargo: entity.fechaInicioCargo,

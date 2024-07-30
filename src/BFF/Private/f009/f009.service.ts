@@ -176,14 +176,14 @@ export class F009Service {
         `${BACK_END_URL}/users/findUsersNadadores`,
       );
 
-      console.log(nadadores);
+      // console.log(nadadores);
       const nuevosNadadores: F009GetNadadoresDto[] = [];
 
       for (let nadador of nadadores) {
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserByNadadorId/` + nadador.Nadador,
         );
-        console.log(nadador);
+        // console.log(nadador);
 
         const nuevoNadador: F009GetNadadoresDto = {
           IDNadador: nadador.Nadador,

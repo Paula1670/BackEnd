@@ -29,7 +29,6 @@ export class MicuotaService {
       cuotaPosible: CuotasPosibles,
       socio: Socio,
     });
-    console.log(newCuota);
 
     return newCuota;
   }

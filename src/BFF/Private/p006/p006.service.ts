@@ -22,19 +22,19 @@ export class P006Service {
       const { data: usuarios } = await this.httpClient.get<UsuarioDto[]>(
         `${BACK_END_URL}/users/findAllActivated/`,
       );
-      console.log(usuarios);
+      //console.log(usuarios);
 
       for (let user of usuarios) {
-        console.log('dentro del for');
-        console.log(user);
+        //  console.log('dentro del for');
+        //  console.log(user);
 
         if (user.Nadador != null) {
-          console.log('dentro del if');
+          //  console.log('dentro del if');
           const { data: tiemposNadador } = await this.httpClient.get<
             TiempoDto[]
           >(`${BACK_END_URL}/tiempos/findAllByNadador/` + user.Nadador);
 
-          console.log(tiemposNadador);
+          // console.log(tiemposNadador);
 
           for (let tiempo of tiemposNadador) {
             t = {
@@ -52,7 +52,7 @@ export class P006Service {
               FechaMarcaNadador: tiempo.FechaMarcaNadador,
               IDTiempo: tiempo.IDTiempos,
             };
-            console.log(t);
+            // console.log(t);
             tiemposFinales.push(t);
           }
         }
@@ -69,10 +69,9 @@ export class P006Service {
         await this.httpClient.get(
           `${BACK_END_URL}/tiempos/findAllByNadador/` + id,
         );
-      console.log(tiemposNadador);
 
       let TiemposUsuario: P006Get_TiempoDto[] = [];
-      console.log(TiemposUsuario);
+
       for (let tiempoNadador of tiemposNadador) {
         let filter = {
           temporada: tiempoNadador.Temporada,
@@ -81,17 +80,16 @@ export class P006Service {
           prueba: tiempoNadador.Prueba,
           categoria: tiempoNadador.IDCategoria,
         };
-        console.log(filter);
+
         const { status: status2, data: minima } = await this.httpClient.post(
           `${BACK_END_URL}/minimas/findMinimasByFilters`,
           { data: filter },
         );
-        console.log(minima);
+
         if (tiempoNadador.Tiempo <= minima[0].TiempoMinimo) {
           TiemposUsuario.push(tiempoNadador);
         }
       }
-      console.log(TiemposUsuario);
       return TiemposUsuario;
     } catch (error) {
       return error;
@@ -107,7 +105,6 @@ export class P006Service {
       const { data: tiemposNadador } = await this.httpClient.get<TiempoDto[]>(
         `${BACK_END_URL}/tiempos/findAllByNadador/` + usuario.Nadador,
       );
-      console.log(tiemposNadador);
       let t: P006Get_TiempoByNadadorDto;
       let tiemposFinales: P006Get_TiempoByNadadorDto[] = [];
       for (let tiempo of tiemposNadador) {
@@ -122,10 +119,9 @@ export class P006Service {
           IDCategoria: tiempo.IDCategoria,
           IDUsuario: usuario.IDUsuario,
         };
-        console.log(t);
+
         tiemposFinales.push(t);
       }
-      console.log(tiemposFinales);
       return tiemposFinales;
     } catch (error) {
       return error;

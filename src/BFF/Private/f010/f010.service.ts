@@ -9,13 +9,11 @@ export class F010Service {
   constructor(private readonly httpClient: HttpClientService) {}
   async Create_Contrato(createF010Dto: F010CreateContratoDto) {
     try {
-      console.log(createF010Dto);
       const { status, data } = await this.httpClient.post(
         `${BACK_END_URL}/contratos/create`,
         { data: createF010Dto },
       );
-      console.log(status);
-      console.log(data);
+
       return data;
     } catch (error) {
       return error;

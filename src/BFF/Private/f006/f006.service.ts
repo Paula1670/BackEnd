@@ -19,9 +19,9 @@ export class F006Service {
         `${BACK_END_URL}/users/findUserByNadadorId/` + createF006Dto.IDNadador,
       );
       console.log(nadador);
-
+      console.log(createF006Dto.IDNadador);
       const newTiempo: CreateTiempoDto = {
-        IDNadador: nadador.idNadador,
+        IDNadador: createF006Dto.IDNadador,
         Tiempo: createF006Dto.Tiempo,
         Temporada: createF006Dto.Temporada,
         Prueba: createF006Dto.Prueba,
