@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateMinimaDto } from './dto/update-minima.dto';
-import { CampeonatoEnum, MinimasEntity } from './entities/minimas.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MinimaDto } from './dto/minima.dto';
 import { CategoriaEntity } from '../categoria/entities/categoria.entity';
 import { CreateMinimaDto } from './dto/create-minima.dto';
 import { FiltrosMinimaDto } from './dto/filtros_minima.dto';
+import { MinimasEntity } from './entities/minimas.entity';
 
 @Injectable()
 export class MinimasService {

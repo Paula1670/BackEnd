@@ -1,7 +1,7 @@
 export enum CampeonatoEnum {
-  Regional = 'regional',
-  Nacional = 'nacional',
-  Continental = 'continental',
-  Mundial = 'mundial',
-  Olimpico = 'olimpico',
+  Regional = 'Regional',
+  Nacional = 'Nacional',
+  Continental = 'Continental',
+  Mundial = 'Mundial',
+  Olimpico = 'Olimpico',
 }

@@ -10,6 +10,7 @@ import {
 import { P007Service } from './p007.service';
 import { P007Create_MinimaDto } from './dto/P007Create_MinimaDto';
 import { P007Editar_MinimaDto } from './dto/P007Editar_MinimaDto';
+import { FiltrosMinimaDto } from 'src/Domain/minimas/dto/filtros_minima.dto';
 
 @Controller('P007')
 export class P007Controller {
@@ -33,5 +34,15 @@ export class P007Controller {
   @Get('/findMinimasByCategoria/:categoria')
   findMinimasByCategoria(@Param('categoria') categoria: number) {
     return this.p007Service.findMinimasByCategoria(categoria);
+  }
+
+  @Post('/findMinimasByFilters')
+  findMinimasByFilters(@Body() findP007Dto: FiltrosMinimaDto) {
+    return this.p007Service.findMinimasByFilters(findP007Dto);
+  }
+
+  @Get('/GetGeneroCategoriaByIDUser/:id')
+  GetGeneroCategoriaByIDUser(@Param('id') id: number) {
+    return this.p007Service.GetGeneroCategoriaByIDUser(id);
   }
 }
