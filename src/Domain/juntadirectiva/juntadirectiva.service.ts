@@ -41,9 +41,7 @@ export class JuntadirectivaService {
   }
 
   async findAll(): Promise<JuntadirectivaDto[]> {
-    const JuntaEntities = await this.juntaRepository.find({
-      relations: ['usuario'],
-    });
+    const JuntaEntities = await this.juntaRepository.find({});
 
     return this.entitysToDtos(JuntaEntities);
   }

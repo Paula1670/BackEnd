@@ -119,6 +119,8 @@ export class F009Service {
 
   async Editar_User(id: number, updateF009Dto: F009Editar_UserDto) {
     try {
+      let idMiembroJunta: number = null;
+
       const { status, data } = await this.httpClient.patch(
         `${BACK_END_URL}/users/edit/` + id,
         { data: updateF009Dto },

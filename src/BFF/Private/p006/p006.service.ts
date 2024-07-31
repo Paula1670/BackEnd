@@ -81,7 +81,7 @@ export class P006Service {
           categoria: tiempoNadador.IDCategoria,
         };
 
-        const { status: status2, data: minima } = await this.httpClient.post(
+        const { data: minima } = await this.httpClient.post(
           `${BACK_END_URL}/minimas/findMinimasByFilters`,
           { data: filter },
         );
