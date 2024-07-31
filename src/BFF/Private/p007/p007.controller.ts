@@ -25,7 +25,7 @@ export class P007Controller {
   Delete_Minima(@Param('id') id: string) {
     return this.p007Service.Delete_Minima(+id);
   }
-
+  /*
   @Get('/findMinimasByAno/:year')
   findMinimasByAno(@Param('year') year: number) {
     return this.p007Service.findMinimasByAno(year);
@@ -34,7 +34,7 @@ export class P007Controller {
   @Get('/findMinimasByCategoria/:categoria')
   findMinimasByCategoria(@Param('categoria') categoria: number) {
     return this.p007Service.findMinimasByCategoria(categoria);
-  }
+  }*/
 
   @Post('/findMinimasByFilters')
   findMinimasByFilters(@Body() findP007Dto: FiltrosMinimaDto) {

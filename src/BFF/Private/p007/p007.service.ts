@@ -33,6 +33,7 @@ export class P007Service {
     }
   }
 
+  /*
   async findMinimasByAno(year: number) {
     try {
       const { status, data } = await this.httpClient.get(
@@ -55,7 +56,7 @@ export class P007Service {
     } catch (error) {
       return error;
     }
-  }
+  }*/
 
   async findMinimasByFilters(filtrosMinimaDto: FiltrosMinimaDto) {
     try {
