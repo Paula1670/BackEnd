@@ -6,12 +6,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UsuarioEntity } from '../usuario/entities/usuario.entity';
 import { JuntadirectivaDto } from './dto/juntadirectiva.dto';
+import { UsuarioService } from '../usuario/usuario.service';
+import { UsuarioDto } from '../usuario/dto/usuario.dto';
 
 @Injectable()
 export class JuntadirectivaService {
   constructor(
     @InjectRepository(JuntaDirectivaEntity)
     private juntaRepository: Repository<JuntaDirectivaEntity>,
+    private usuarioService: UsuarioService,
   ) {}
 
   async create(
@@ -54,10 +57,21 @@ export class JuntadirectivaService {
     );
   }
   async remove(id: number) {
-    const Junta = await this.juntaRepository.findOneBy({ idMiembroJunta: id });
-    if (!Junta) throw new NotFoundException('Esta Junta no existe');
-    await this.juntaRepository.delete(id);
-    return Junta;
+    //Uso el usuario service para borrar una linea de la base de datos de junta Directiva
+    //y como tiene foreignt key con usuario debo ponerla a NULL
+    let user: UsuarioDto;
+    user = await this.usuarioService.findById(id);
+
+    const userJunta = await this.juntaRepository.findOneBy({
+      idMiembroJunta: user.juntaDirectiva,
+    });
+    user.juntaDirectiva = null;
+    await this.usuarioService.update(id, user);
+    console.log(userJunta);
+    if (!userJunta) throw new NotFoundException('Esta Junta no existe');
+    console.log(userJunta.idMiembroJunta);
+    await this.juntaRepository.delete(userJunta.idMiembroJunta);
+    return userJunta;
   }
 
   private entityToDto(entity: JuntaDirectivaEntity): JuntadirectivaDto {

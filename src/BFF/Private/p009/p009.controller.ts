@@ -30,6 +30,11 @@ export class P009Controller {
     return this.p009Service.Delete_User(+id);
   }
 
+  @Delete('/Delete_MiembroJunta/:id')
+  Delete_MiembroJunta(@Param('id') id: string) {
+    return this.p009Service.Delete_MiembroJunta(+id);
+  }
+
   @Put('/Activate_User/:id')
   Activate_User(@Param('id') id: string) {
     return this.p009Service.Activate_User(+id);
@@ -48,6 +53,11 @@ export class P009Controller {
   @Get('/findAllEntrenadores')
   findAllEntrenadores() {
     return this.p009Service.findAllEntrenadores();
+  }
+
+  @Get('/findAllJunta')
+  findAllJunta() {
+    return this.p009Service.findAllJunta();
   }
 
   @Get('/findAllNadadores')

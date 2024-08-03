@@ -281,6 +281,25 @@ export class UsuarioService {
     return this.entitysToDtos(UsuarioEntities);
   }
 
+  async findUsersJunta(): Promise<UsuarioDto[]> {
+    const UsuarioEntities = await this.usuarioRepository.find({
+      relations: ['Nadador', 'Entrenador', 'Socio', 'juntaDirectiva'],
+      where: {
+        juntaDirectiva: Not(IsNull()),
+      },
+    });
+
+    return this.entitysToDtos(UsuarioEntities);
+  }
+
+  async getAll(): Promise<UsuarioDto[]> {
+    const UsuarioEntities = await this.usuarioRepository.find({
+      relations: ['Nadador', 'Entrenador', 'Socio', 'juntaDirectiva'],
+    });
+
+    return this.entitysToDtos(UsuarioEntities);
+  }
+
   //Obtener nadadores
 
   async findUsersNadadores(): Promise<UsuarioDto[]> {

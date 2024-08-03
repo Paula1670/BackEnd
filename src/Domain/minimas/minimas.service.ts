@@ -116,7 +116,7 @@ export class MinimasService {
         categoria: filters.categoria,
       });
     }
-    console.log(await queryBuilder.getMany());
+
     return this.entitysToDtos(await queryBuilder.getMany());
   }
 

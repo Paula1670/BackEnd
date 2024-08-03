@@ -81,6 +81,11 @@ export class UsuarioController {
     return this.usuarioService.findUsersSocios();
   }
 
+  @Get('/findUsersJunta')
+  findUsersJunta() {
+    return this.usuarioService.findUsersJunta();
+  }
+
   @Get('/findUsersEntrenadores')
   findUsersEntrenadores() {
     return this.usuarioService.findUsersEntrenadores();
@@ -89,5 +94,10 @@ export class UsuarioController {
   @Get('/findUsersNadadores')
   findUsersNadadores() {
     return this.usuarioService.findUsersNadadores();
+  }
+
+  @Get('/getAll')
+  getAll() {
+    return this.usuarioService.getAll();
   }
 }

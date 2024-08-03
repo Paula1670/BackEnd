@@ -18,8 +18,7 @@ export class F006Service {
       const { data: usuario } = await this.httpClient.get<NadadorDto>(
         `${BACK_END_URL}/users/findUserByNadadorId/` + createF006Dto.IDNadador,
       );
-      console.log(nadador);
-      console.log(createF006Dto.IDNadador);
+
       const newTiempo: CreateTiempoDto = {
         IDNadador: createF006Dto.IDNadador,
         Tiempo: createF006Dto.Tiempo,
@@ -30,7 +29,7 @@ export class F006Service {
         Estilo: createF006Dto.Estilo,
         IDCategoria: nadador.Categoria,
       };
-      console.log(newTiempo);
+
       const { data: tiempo } = await this.httpClient.post(
         `${BACK_END_URL}/tiempos/create`,
         { data: newTiempo },

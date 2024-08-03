@@ -8,6 +8,7 @@ import { P009Get_UserDto } from './dto/P009Get_UserDto';
 import { P009GetNadadorDto } from './dto/P009GetNadadorDto';
 import { P009GetEntrenadorDto } from './dto/P009GetEntrenadorDto';
 import { BACK_END_URL } from 'src/Constantes/enviroment';
+import { P009GetJuntaDirectivaDto } from './dto/P009GetJuntaDirectivaDto';
 
 @Injectable()
 export class P009Service {
@@ -91,7 +92,7 @@ export class P009Service {
 
   async findAllNadadores() {
     try {
-      const { status, data } = await this.httpClient.get(
+      const { data } = await this.httpClient.get(
         `${BACK_END_URL}/users/findUsersNadadores/`,
       );
 
@@ -114,6 +115,7 @@ export class P009Service {
             FechaInscripcion: usuario.FechaInscripcion,
             NombreCategoria: categorias.NombreCategoria,
           };
+
           arrayNadadores.push(nuevaCategoria);
         }
       }
@@ -155,6 +157,46 @@ export class P009Service {
       }
 
       return Arrayentrenadores;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async findAllJunta() {
+    try {
+      const { data } = await this.httpClient.get(
+        `${BACK_END_URL}/users/findUsersJunta/`,
+      );
+
+      let ArrayJunta: P009GetJuntaDirectivaDto[] = [];
+      for (let miembro of data) {
+        if (miembro.Habilitado) {
+          // entrenadores.push(entrenador);
+
+          const { data: junta } = await this.httpClient.get(
+            `${BACK_END_URL}/juntadirectiva/getById/` + miembro.juntaDirectiva,
+          );
+
+          const nuevoJunta: P009GetJuntaDirectivaDto = {
+            Nombre: miembro.Nombre,
+            Apellido: miembro.Apellido,
+            Contrasena: miembro.Contrasena,
+            FechaNacimiento: miembro.FechaNacimiento,
+            Direccion: miembro.Direccion,
+            Telefono: miembro.Telefono,
+            FechaInscripcion: miembro.FechaInscripcion,
+            FechaInicioCargo: junta.fechaInicioCargo,
+            FechaTerminoCargo: junta.fechaTerminoCargo,
+            Puesto: junta.puesto,
+            idUsuario: miembro.IDUsuario,
+            idPuesto: junta.idMiembroJunta,
+          };
+
+          ArrayJunta.push(nuevoJunta);
+        }
+      }
+
+      return ArrayJunta;
     } catch (error) {
       return error;
     }
@@ -219,5 +261,18 @@ export class P009Service {
       i++;
     }
     return idCategoriaEncontrada;
+  }
+
+  //Junta
+  async Delete_MiembroJunta(id: number) {
+    try {
+      const { status, data } = await this.httpClient.delete(
+        `${BACK_END_URL}/juntadirectiva/delete/` + id,
+      );
+
+      return data;
+    } catch (error) {
+      return error;
+    }
   }
 }

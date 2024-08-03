@@ -46,6 +46,7 @@ import { DatosContactoEntity } from './Domain/datos-contacto/entities/datos-cont
 import { DatosContactoModule } from './Domain/datos-contacto/datos-contacto.module';
 import { PFooterModule } from './BFF/Public/p-footer/p-footer.module';
 import { FFooterModule } from './BFF/Public/f-footer/f-footer.module';
+import { F003Module } from './BFF/Private/f003/f003.module';
 
 @Module({
   imports: [
@@ -108,6 +109,7 @@ import { FFooterModule } from './BFF/Public/f-footer/f-footer.module';
     DatosContactoModule,
     PFooterModule,
     FFooterModule,
+    F003Module,
   ],
   controllers: [],
   providers: [],

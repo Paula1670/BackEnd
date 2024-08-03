@@ -119,8 +119,6 @@ export class F009Service {
 
   async Editar_User(id: number, updateF009Dto: F009Editar_UserDto) {
     try {
-      let idMiembroJunta: number = null;
-
       const { status, data } = await this.httpClient.patch(
         `${BACK_END_URL}/users/edit/` + id,
         { data: updateF009Dto },
@@ -178,14 +176,12 @@ export class F009Service {
         `${BACK_END_URL}/users/findUsersNadadores`,
       );
 
-      // console.log(nadadores);
       const nuevosNadadores: F009GetNadadoresDto[] = [];
 
       for (let nadador of nadadores) {
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserByNadadorId/` + nadador.Nadador,
         );
-        // console.log(nadador);
 
         const nuevoNadador: F009GetNadadoresDto = {
           IDNadador: nadador.Nadador,
