@@ -64,10 +64,8 @@ export class F003Service {
       );
       let users: F003Usuario[] = [];
       for (let user of usuarios) {
-        console.log(user);
         if (user.juntaDirectiva == null) {
           users.push(user);
-          console.log('entro if');
         }
       }
       return users;
