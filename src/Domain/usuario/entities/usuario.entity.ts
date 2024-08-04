@@ -26,6 +26,8 @@ export class UsuarioEntity {
   @Column()
   Direccion: string;
   @Column()
+  Domicilio: string;
+  @Column()
   Telefono: number;
   @Column()
   FechaInscripcion: Date;

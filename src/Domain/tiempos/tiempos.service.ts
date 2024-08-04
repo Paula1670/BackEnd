@@ -7,6 +7,9 @@ import { Repository } from 'typeorm';
 import { NadadorEntity } from '../nadadores/entities/nadadore.entity';
 import { TiempoDto } from './dto/tiempo.dto';
 import { CategoriaEntity } from '../categoria/entities/categoria.entity';
+import { FiltrosTiempoDto } from './dto/filtros_Tiempo.dto';
+import { UsuarioEntity } from '../usuario/entities/usuario.entity';
+import { query } from 'express';
 
 @Injectable()
 export class TiemposService {
@@ -142,8 +145,36 @@ export class TiemposService {
     return this.entitysToDtos(mejoresTiempos);
   }
 
-  /* estilo?: string,
-  prueba?: string,
-  temporada?: string,
-  piscina?: string,*/
+  async findTiemposByFilters(filters?: FiltrosTiempoDto): Promise<TiempoDto[]> {
+    const query = this.tiempoRepository
+      .createQueryBuilder('t')
+      .innerJoin('usuarios', 'u', 'u.nadador = t.IDNadador')
+      .innerJoin('nadadores', 'n', 'n.IDNadador = u.nadador');
+    console.log(filters);
+    if (filters?.IDNadador) {
+      query.andWhere('t.IDNadador = :IDNadador', {
+        IDNadador: filters.IDNadador,
+      });
+    }
+    if (filters?.genero) {
+      query.andWhere('u.genero = :genero', { genero: filters.genero });
+    }
+
+    if (filters?.piscina) {
+      query.andWhere('t.piscina = :piscina', { piscina: filters.piscina });
+    }
+    if (filters?.estilo) {
+      query.andWhere('t.estilo = :estilo', { estilo: filters.estilo });
+    }
+    if (filters?.prueba) {
+      query.andWhere('t.prueba = :prueba', { prueba: filters.prueba });
+    }
+    if (filters?.categoria) {
+      query.andWhere('t.idCategoria = :categoria', {
+        categoria: filters.categoria,
+      });
+    }
+    console.log(await query.getMany());
+    return this.entitysToDtos(await query.getMany());
+  }
 }

@@ -11,6 +11,8 @@ import {
 import { TiemposService } from './tiempos.service';
 import { CreateTiempoDto } from './dto/create-tiempo.dto';
 import { UpdateTiempoDto } from './dto/update-tiempo.dto';
+import { FiltrosTiempoDto } from './dto/filtros_Tiempo.dto';
+import { TiempoDto } from './dto/tiempo.dto';
 
 @Controller('tiempos')
 export class TiemposController {
@@ -39,6 +41,13 @@ export class TiemposController {
   @Get('/obtenerMenorTiempoPorFiltros')
   async obtenerMenorTiempoPorFiltros(): Promise<any[]> {
     return this.tiemposService.obtenerMenorTiempoPorFiltros();
+  }
+
+  @Post('/findTiemposByFilters')
+  async findTiemposByFilters(
+    @Body() filtrosTiempoDto: FiltrosTiempoDto,
+  ): Promise<TiempoDto[]> {
+    return this.tiemposService.findTiemposByFilters(filtrosTiempoDto);
   }
 
   @Patch('/edit/:id')

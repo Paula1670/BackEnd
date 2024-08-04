@@ -1,26 +1,31 @@
+import { CampeonatoEnum } from 'src/Constantes/CampeonatoEnum';
 import { EstiloEnum } from 'src/Constantes/EstiloEnum';
+import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { PiscinaEnum } from 'src/Constantes/PiscinaEnum';
 import { PruebaEnum } from 'src/Constantes/PruebaEnum';
 import { TemporadaEnum } from 'src/Constantes/TemporadaEnum';
 
-export class TiempoDto {
-  IDTiempos: number;
-  IDNadador: number;
-  Tiempo: string;
+export class P007Minima {
+  IDMinima: number;
+  TiempoMinimo: string;
   Temporada: TemporadaEnum;
   Prueba: PruebaEnum;
   Piscina: PiscinaEnum;
+  Categoria: number;
   Estilo: EstiloEnum;
-  FechaMarcaNadador: Date;
-  IDCategoria: number;
+  Genero: GeneroEnum;
+  FechaVigenciaMinima: Date;
+  Campeonato: CampeonatoEnum;
+  Conseguida: boolean;
 
   constructor() {
-    this.IDNadador = 1;
-    this.Tiempo = '00:00:00';
+    this.TiempoMinimo = '00:00:00';
     this.Temporada = TemporadaEnum.Invierno;
     this.Prueba = PruebaEnum.Metros200;
     this.Piscina = PiscinaEnum.Metros50;
-    this.FechaMarcaNadador = new Date();
+    this.Categoria = 1;
     this.Estilo = EstiloEnum.Braza;
+    this.Genero = GeneroEnum.Femenino;
+    this.FechaVigenciaMinima = new Date();
   }
 }

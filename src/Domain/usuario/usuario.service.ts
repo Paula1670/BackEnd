@@ -36,6 +36,7 @@ export class UsuarioService {
       Contrasena: createUsuarioDto.Contrasena,
       FechaNacimiento: createUsuarioDto.FechaNacimiento,
       Direccion: createUsuarioDto.Direccion,
+      // Domicilio: createUsuarioDto.Domicilio,
       Telefono: createUsuarioDto.Telefono,
       FechaInscripcion: createUsuarioDto.FechaInscripcion,
       Genero: createUsuarioDto.Genero,
@@ -157,6 +158,7 @@ export class UsuarioService {
     usuarioDto.FechaInscripcion = entity.FechaInscripcion;
     usuarioDto.FechaNacimiento = entity.FechaNacimiento;
     usuarioDto.Direccion = entity.Direccion;
+    //usuarioDto.Domicilio = entity.Domicilio;
     usuarioDto.Telefono = entity.Telefono;
     usuarioDto.Genero = entity.Genero;
     usuarioDto.Apellido = entity.Apellido;

@@ -8,6 +8,7 @@ export interface P009GetJuntaDirectivaDto {
   Contrasena: string;
   FechaNacimiento: Date;
   Direccion: string;
+  //Domicilio: string;
   Telefono: number;
   FechaInscripcion: Date;
   FechaInicioCargo: Date;

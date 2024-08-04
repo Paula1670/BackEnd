@@ -19,13 +19,13 @@ export class NadadoresService {
 
   async create(createNadadorDto: CreateNadadorDto): Promise<NadadorEntity> {
     let Socio = new SocioEntity();
-    Socio.idSocio = createNadadorDto.socio;
+    Socio.idSocio = createNadadorDto.socioAsociado;
 
     let Categoria = new CategoriaEntity();
     Categoria.IDCategoria = createNadadorDto.Categoria;
 
     let Entrenador = new EntrenadorEntity();
-    Entrenador.idEntrenador = createNadadorDto.entrenador;
+    Entrenador.idEntrenador = createNadadorDto.entrenadorAsociado;
 
     const newNadador = await this.nadadorRepository.save({
       socio: Socio,
@@ -43,10 +43,10 @@ export class NadadoresService {
   ): Promise<NadadorEntity> {
     const Nadador = await this.nadadorRepository.findOneBy({ idNadador: id });
     let Socio = new SocioEntity();
-    Socio.idSocio = updateNadadorDto.socio;
+    Socio.idSocio = updateNadadorDto.socioAsociado;
 
     let Entrenador = new EntrenadorEntity();
-    Entrenador.idEntrenador = updateNadadorDto.entrenador;
+    Entrenador.idEntrenador = updateNadadorDto.entrenadorAsociado;
 
     let Categoria = new CategoriaEntity();
     Categoria.IDCategoria = updateNadadorDto.Categoria;
@@ -60,6 +60,7 @@ export class NadadoresService {
 
     editedNadador.entrenador = Entrenador;
     editedNadador.Categoria = Categoria;
+
     return await this.nadadorRepository.save(editedNadador);
   }
 

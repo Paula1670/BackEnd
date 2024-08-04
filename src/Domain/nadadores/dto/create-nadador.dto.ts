@@ -1,11 +1,11 @@
 export class CreateNadadorDto {
-  socio: number;
-  entrenador: number;
+  socioAsociado: number;
+  entrenadorAsociado: number;
   Categoria: number;
 
   constructor() {
-    this.socio = 3;
-    this.entrenador = 1;
+    this.socioAsociado = 3;
+    this.entrenadorAsociado = 1;
     this.Categoria = 1;
   }
 }

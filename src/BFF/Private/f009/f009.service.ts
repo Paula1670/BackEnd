@@ -52,18 +52,31 @@ export class F009Service {
           `${BACK_END_URL}/contratos/create`,
           { data: contrato },
         );
-      }
-      if (createF009Dto.crearNadador) {
+        if (createF009Dto.crearNadador) {
+          let nadadorDto: CreateNadadorDto = {
+            socioAsociado: IDSOCIO, //
+            entrenadorAsociado: createF009Dto.entrenadorAsociado, //
+            Categoria: createF009Dto.Categoria, //FUTURO
+          };
+
+          const { data: nadador } = await this.httpClient.post<NadadorDto>(
+            `${BACK_END_URL}/nadadores/create`,
+            { data: nadadorDto },
+          );
+          IDNADADOR = nadador.idNadador;
+        }
+      } else if (createF009Dto.crearNadador) {
         let nadadorDto: CreateNadadorDto = {
-          socio: null, //
-          entrenador: null, //
-          Categoria: null, //FUTURO
+          socioAsociado: createF009Dto.socioAsociado,
+          entrenadorAsociado: createF009Dto.entrenadorAsociado,
+          Categoria: createF009Dto.Categoria,
         };
 
         const { data: nadador } = await this.httpClient.post<NadadorDto>(
           `${BACK_END_URL}/nadadores/create`,
           { data: nadadorDto },
         );
+
         IDNADADOR = nadador.idNadador;
       }
       if (createF009Dto.crearEntrenador) {
@@ -84,9 +97,10 @@ export class F009Service {
         Contrasena: createF009Dto.Contrasena,
         FechaNacimiento: createF009Dto.FechaNacimiento,
         Direccion: createF009Dto.Direccion,
+        //Domicilio: createF009Dto.Domicilio,
         Telefono: createF009Dto.Telefono,
         FechaInscripcion: createF009Dto.FechaInscripcion,
-        Genero: GeneroEnum.Femenino,
+        Genero: createF009Dto.Genero,
         Socio: IDSOCIO,
         Nadador: IDNADADOR,
         Entrenador: IDENTRENADOR,
@@ -98,7 +112,6 @@ export class F009Service {
         `${BACK_END_URL}/users/create`,
         { data: User },
       );
-
       return data;
     } catch (error) {
       return error;
@@ -154,14 +167,15 @@ export class F009Service {
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserBySocioId/` + socio.idSocio,
         );
+        if (usuario.Habilitado) {
+          const nuevoSocio: F009GetSociosDto = {
+            IDSocio: socio.idSocio,
+            nombreUsuario: usuario.Nombre,
+            apellidoUsuario: usuario.Apellido,
+          };
 
-        const nuevoSocio: F009GetSociosDto = {
-          IDSocio: socio.idSocio,
-          nombreUsuario: usuario.Nombre,
-          apellidoUsuario: usuario.Apellido,
-        };
-
-        nuevosSocios.push(nuevoSocio);
+          nuevosSocios.push(nuevoSocio);
+        }
       }
 
       return nuevosSocios;
@@ -182,14 +196,15 @@ export class F009Service {
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserByNadadorId/` + nadador.Nadador,
         );
+        if (usuario.Habilitado) {
+          const nuevoNadador: F009GetNadadoresDto = {
+            IDNadador: nadador.Nadador,
+            nombreUsuario: usuario.Nombre,
+            apellidoUsuario: usuario.Apellido,
+          };
 
-        const nuevoNadador: F009GetNadadoresDto = {
-          IDNadador: nadador.Nadador,
-          nombreUsuario: usuario.Nombre,
-          apellidoUsuario: usuario.Apellido,
-        };
-
-        nuevosNadadores.push(nuevoNadador);
+          nuevosNadadores.push(nuevoNadador);
+        }
       }
 
       return nuevosNadadores;
@@ -211,14 +226,15 @@ export class F009Service {
           `${BACK_END_URL}/users/findUserByEntrenadorId/` +
             entrenador.idEntrenador,
         );
+        if (usuario.Habilitado) {
+          const nuevoEntrenador: F009Get_EntrenadoresDto = {
+            IDEntrenador: entrenador.idEntrenador,
+            nombreUsuario: usuario.Nombre,
+            apellidoUsuario: usuario.Apellido,
+          };
 
-        const nuevoEntrenador: F009Get_EntrenadoresDto = {
-          IDEntrenador: entrenador.idEntrenador,
-          nombreUsuario: usuario.Nombre,
-          apellidoUsuario: usuario.Apellido,
-        };
-
-        nuevosEntrenadores.push(nuevoEntrenador);
+          nuevosEntrenadores.push(nuevoEntrenador);
+        }
       }
 
       return nuevosEntrenadores;

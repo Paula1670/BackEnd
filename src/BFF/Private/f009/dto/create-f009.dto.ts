@@ -1,3 +1,4 @@
+import { CategoriaEnum } from 'src/Constantes/CategoriaEnum';
 import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 
 export class F009Create_UserDto {
@@ -6,6 +7,7 @@ export class F009Create_UserDto {
   Contrasena: string;
   FechaNacimiento: Date;
   Direccion: string;
+  //Domicilio: string;
   Telefono: number;
   FechaInscripcion: Date;
   Genero: GeneroEnum;
@@ -18,7 +20,9 @@ export class F009Create_UserDto {
   //campos de Entrenador
   crearEntrenador: boolean;
   especialidad: string;
-
+  socioAsociado: number;
+  entrenadorAsociado: number;
+  Categoria: number;
   constructor() {
     this.Nombre = 'Pau';
     this.Apellido = 'Pulido';

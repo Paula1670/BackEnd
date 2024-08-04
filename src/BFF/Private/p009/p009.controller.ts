@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { P009Service } from './p009.service';
 import { ActualizarCategoriaDeNadadorDto } from './dto/P009actualizarCategoriaDeNadador.dto';
+import { UsuarioDto } from 'src/Domain/usuario/dto/usuario.dto';
 
 @Controller('P009')
 export class P009Controller {
@@ -78,5 +79,10 @@ export class P009Controller {
   @Put('/actualizarAllCategorias')
   actualizarAllCategorias() {
     return this.p009Service.actualizarAllCategorias();
+  }
+
+  @Get('/obtenerIdCategoria')
+  obtenerIdCategoria(@Body() user: UsuarioDto) {
+    return this.p009Service.obtenerIdCategoria(user);
   }
 }

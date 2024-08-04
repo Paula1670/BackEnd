@@ -4,6 +4,7 @@ export class P009GetNadadorDto {
   Contrasena: string;
   FechaNacimiento: Date;
   Direccion: string;
+  //Domicilio: string;
   Telefono: number;
   FechaInscripcion: Date;
   NombreCategoria: string;

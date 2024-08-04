@@ -4,9 +4,11 @@ export class P009GetEntrenadorDto {
   Contrasena: string;
   FechaNacimiento: Date;
   Direccion: string;
+  //Domicilio: string;
   Telefono: number;
   FechaInscripcion: Date;
   especialidad: string;
+
   constructor() {
     this.Nombre = 'Pau';
     this.Apellido = 'pulido';

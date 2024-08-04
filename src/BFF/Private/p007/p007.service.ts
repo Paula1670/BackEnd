@@ -4,6 +4,9 @@ import { BACK_END_URL } from 'src/Constantes/enviroment';
 import { FiltrosMinimaDto } from 'src/Domain/minimas/dto/filtros_minima.dto';
 import { MinimaDto } from 'src/Domain/minimas/dto/minima.dto';
 import { P007GetGeneroCategoriaDto } from './dto/P007GetGeneroCategoriaDto';
+import { TiempoDto } from 'src/Domain/tiempos/dto/tiempo.dto';
+import { P007Minima } from './dto/P007Minima.dto';
+import { P007FiltrosDto } from './dto/P007Filtros.dto';
 
 @Injectable()
 export class P007Service {
@@ -58,15 +61,69 @@ export class P007Service {
     }
   }*/
 
-  async findMinimasByFilters(filtrosMinimaDto: FiltrosMinimaDto) {
+  async findMinimasByFilters(
+    p007FiltrosDto: P007FiltrosDto,
+  ): Promise<P007Minima[]> {
     try {
-      console.log(filtrosMinimaDto);
-      const { status, data } = await this.httpClient.post(
+      const { data: minimas } = await this.httpClient.post<MinimaDto[]>(
         `${BACK_END_URL}/minimas/findMinimasByFilters`,
-        { data: filtrosMinimaDto },
+        {
+          data: {
+            piscina: p007FiltrosDto.piscina,
+            estilo: p007FiltrosDto.estilo,
+            prueba: p007FiltrosDto.prueba,
+            genero: p007FiltrosDto.genero,
+            categoria: p007FiltrosDto.categoria,
+          },
+        },
       );
-      console.log(data);
-      return data;
+
+      const { data: tiempos } = await this.httpClient.post<TiempoDto[]>(
+        `${BACK_END_URL}/tiempos/findTiemposByFilters`,
+        {
+          data: {
+            IDNadador: p007FiltrosDto.IDNadador,
+
+            piscina: p007FiltrosDto.piscina,
+            estilo: p007FiltrosDto.estilo,
+            prueba: p007FiltrosDto.prueba,
+            genero: p007FiltrosDto.genero,
+            categoria: p007FiltrosDto.categoria,
+          },
+        },
+      );
+      console.log({
+        IDNadador: p007FiltrosDto.IDNadador,
+
+        piscina: p007FiltrosDto.piscina,
+        estilo: p007FiltrosDto.estilo,
+        prueba: p007FiltrosDto.prueba,
+        genero: p007FiltrosDto.genero,
+        categoria: p007FiltrosDto.categoria,
+      });
+      console.log('Fin dto');
+      console.log(tiempos);
+      console.log(minimas);
+      let MinimasGotten: P007Minima[] = [];
+      for (let minima of minimas) {
+        for (let tiempo of tiempos) {
+          MinimasGotten.push({
+            IDMinima: minima.IDMinima,
+            TiempoMinimo: minima.TiempoMinimo,
+            Temporada: minima.Temporada,
+            Prueba: minima.Prueba,
+            Piscina: minima.Piscina,
+            Categoria: minima.Categoria,
+            Estilo: minima.Estilo,
+            Genero: minima.Genero,
+            FechaVigenciaMinima: minima.FechaVigenciaMinima,
+            Campeonato: minima.Campeonato,
+            Conseguida: minima.TiempoMinimo > tiempo.Tiempo ? true : false,
+          });
+        }
+      }
+
+      return MinimasGotten;
     } catch (error) {
       return error;
     }
@@ -77,7 +134,7 @@ export class P007Service {
       const { data: usuario } = await this.httpClient.get(
         `${BACK_END_URL}/users/getById/` + id,
       );
-      console.log(usuario);
+
       const { data: nadador } = await this.httpClient.get(
         `${BACK_END_URL}/nadadores/getById/` + usuario.Nadador,
       );

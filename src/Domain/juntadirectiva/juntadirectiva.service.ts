@@ -67,9 +67,9 @@ export class JuntadirectivaService {
     });
     user.juntaDirectiva = null;
     await this.usuarioService.update(id, user);
-    console.log(userJunta);
+
     if (!userJunta) throw new NotFoundException('Esta Junta no existe');
-    console.log(userJunta.idMiembroJunta);
+
     await this.juntaRepository.delete(userJunta.idMiembroJunta);
     return userJunta;
   }
