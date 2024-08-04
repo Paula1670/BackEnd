@@ -7,7 +7,7 @@ export class F009Create_UserDto {
   Contrasena: string;
   FechaNacimiento: Date;
   Direccion: string;
-  //Domicilio: string;
+  Domicilio: string;
   Telefono: number;
   FechaInscripcion: Date;
   Genero: GeneroEnum;

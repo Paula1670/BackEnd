@@ -95,7 +95,7 @@ export class P009Service {
       const { data } = await this.httpClient.get(
         `${BACK_END_URL}/users/findUsersNadadores/`,
       );
-      console.log(data);
+      //console.log(data);
       let arrayNadadores: P009GetNadadorDto[] = [];
 
       for (let usuario of data) {
@@ -111,7 +111,7 @@ export class P009Service {
             Contrasena: usuario.Contrasena,
             FechaNacimiento: usuario.FechaNacimiento,
             Direccion: usuario.Direccion,
-            //Domicilio: usuario.Domicilio,
+            Domicilio: usuario.Domicilio,
             Telefono: usuario.Telefono,
             FechaInscripcion: usuario.FechaInscripcion,
             NombreCategoria: categorias.NombreCategoria,
@@ -120,7 +120,7 @@ export class P009Service {
           arrayNadadores.push(nuevaCategoria);
         }
       }
-      console.log(arrayNadadores);
+      //console.log(arrayNadadores);
       return arrayNadadores;
     } catch (error) {
       return error;
@@ -148,7 +148,7 @@ export class P009Service {
             Contrasena: entrenador.Contrasena,
             FechaNacimiento: entrenador.FechaNacimiento,
             Direccion: entrenador.Direccion,
-            //Domicilio: entrenador.Domicilio,
+            Domicilio: entrenador.Domicilio,
             Telefono: entrenador.Telefono,
             FechaInscripcion: entrenador.FechaInscripcion,
             especialidad: especialidades.especialidad,
@@ -185,7 +185,7 @@ export class P009Service {
             Contrasena: miembro.Contrasena,
             FechaNacimiento: miembro.FechaNacimiento,
             Direccion: miembro.Direccion,
-            // Domicilio: miembro.Domicilio,
+            Domicilio: miembro.Domicilio,
             Telefono: miembro.Telefono,
             FechaInscripcion: miembro.FechaInscripcion,
             FechaInicioCargo: junta.fechaInicioCargo,

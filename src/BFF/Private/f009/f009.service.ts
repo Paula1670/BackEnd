@@ -66,20 +66,20 @@ export class F009Service {
           IDNADADOR = nadador.idNadador;
         }
       } else if (createF009Dto.crearNadador) {
+        console.log('entroIf');
         let nadadorDto: CreateNadadorDto = {
           socioAsociado: createF009Dto.socioAsociado,
           entrenadorAsociado: createF009Dto.entrenadorAsociado,
           Categoria: createF009Dto.Categoria,
         };
-
+        console.log(nadadorDto);
         const { data: nadador } = await this.httpClient.post<NadadorDto>(
           `${BACK_END_URL}/nadadores/create`,
           { data: nadadorDto },
         );
-
+        console.log(nadador);
         IDNADADOR = nadador.idNadador;
-      }
-      if (createF009Dto.crearEntrenador) {
+      } else if (createF009Dto.crearEntrenador) {
         let entrenadorDto: CreateEntrenadoreDto = {
           fechaContratacion: undefined, //
           especialidad: createF009Dto.especialidad,
@@ -91,13 +91,14 @@ export class F009Service {
         );
         IDENTRENADOR = data.idEntrenador;
       }
+      console.log(createF009Dto.Domicilio);
       const User: CreateUsuarioDto = {
         Nombre: createF009Dto.Nombre,
         Apellido: createF009Dto.Apellido,
         Contrasena: createF009Dto.Contrasena,
         FechaNacimiento: createF009Dto.FechaNacimiento,
         Direccion: createF009Dto.Direccion,
-        //Domicilio: createF009Dto.Domicilio,
+        Domicilio: createF009Dto.Domicilio,
         Telefono: createF009Dto.Telefono,
         FechaInscripcion: createF009Dto.FechaInscripcion,
         Genero: createF009Dto.Genero,
@@ -107,11 +108,12 @@ export class F009Service {
         juntaDirectiva: null,
         Habilitado: 1,
       };
-
+      console.log(User);
       const { status, data } = await this.httpClient.post(
         `${BACK_END_URL}/users/create`,
         { data: User },
       );
+      console.log(data);
       return data;
     } catch (error) {
       return error;

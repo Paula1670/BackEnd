@@ -7,7 +7,7 @@ export class P009Get_UserDto {
   Contrasena: string;
   FechaNacimiento: Date;
   Direccion: string;
-  //Domicilio: string;
+  Domicilio: string;
   Telefono: number;
   FechaInscripcion: Date;
   Genero: GeneroEnum;
