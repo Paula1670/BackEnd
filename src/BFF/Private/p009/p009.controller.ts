@@ -85,4 +85,14 @@ export class P009Controller {
   obtenerIdCategoria(@Body() user: UsuarioDto) {
     return this.p009Service.obtenerIdCategoria(user);
   }
+
+  @Get('/findNadadoresByEntrenador/:id')
+  findNadadoresByEntrenador(@Param('id') id: string) {
+    return this.p009Service.findNadadoresByEntrenador(+id);
+  }
+
+  @Get('/findNadadoresBySocio/:id')
+  findNadadoresBySocio(@Param('id') id: string) {
+    return this.p009Service.findNadadoresBySocio(+id);
+  }
 }

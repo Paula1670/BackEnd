@@ -8,6 +8,7 @@ export class P009GetNadadorDto {
   Telefono: number;
   FechaInscripcion: Date;
   NombreCategoria: string;
+  IDUsuario: number;
   constructor() {
     this.Nombre = 'Pau';
     this.Apellido = 'pulido';

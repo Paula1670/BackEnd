@@ -49,6 +49,7 @@ export class P006Service {
           }
         }
       }
+
       return tiemposFinales;
     } catch (error) {
       return error;

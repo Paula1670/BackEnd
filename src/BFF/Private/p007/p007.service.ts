@@ -78,7 +78,6 @@ export class P007Service {
           },
         },
       );
-
       const { data: tiempos } = await this.httpClient.post<TiempoDto[]>(
         `${BACK_END_URL}/tiempos/findTiemposByFilters`,
         {
@@ -93,7 +92,6 @@ export class P007Service {
           },
         },
       );
-
       let MinimasGotten: P007Minima[] = [];
       for (let minima of minimas) {
         let tiempo = tiempos.find((t) => t.Tiempo <= minima.TiempoMinimo);

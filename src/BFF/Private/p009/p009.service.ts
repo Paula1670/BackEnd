@@ -25,7 +25,6 @@ export class P009Service {
       return error;
     }
   }
-
   async FindById(id: number) {
     try {
       const { status, data } = await this.httpClient.get(
@@ -48,7 +47,6 @@ export class P009Service {
       return error;
     }
   }
-
   async Delete_User(id: number) {
     try {
       const { status, data } = await this.httpClient.delete(
@@ -115,6 +113,7 @@ export class P009Service {
             Telefono: usuario.Telefono,
             FechaInscripcion: usuario.FechaInscripcion,
             NombreCategoria: categorias.NombreCategoria,
+            IDUsuario: usuario.IDUsuario,
           };
 
           arrayNadadores.push(nuevaCategoria);
@@ -126,10 +125,59 @@ export class P009Service {
     }
   }
 
-  async findMisNadadores() {
+  async findNadadoresByEntrenador(id: number) {
     try {
       const { data } = await this.httpClient.get(
-        `${BACK_END_URL}/users/findUsersNadadores/`,
+        `${BACK_END_URL}/users/findUsersNadadores`,
+      );
+
+      const { data: Entrenador } = await this.httpClient.get(
+        `${BACK_END_URL}/users/getById/` + id,
+      );
+      let arrayNadadores: P009GetNadadorDto[] = [];
+
+      for (let usuario of data) {
+        if (usuario.Habilitado) {
+          const { data: nadador } = await this.httpClient.get(
+            `${BACK_END_URL}/nadadores/getById/` + usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
+          );
+
+          const { data: categorias } = await this.httpClient.get(
+            `${BACK_END_URL}/categorias/findCategoriaByNadador/` +
+              usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
+          );
+
+          const nuevaCategoria: P009GetNadadorDto = {
+            Nombre: usuario.Nombre,
+            Apellido: usuario.Apellido,
+            Contrasena: usuario.Contrasena,
+            FechaNacimiento: usuario.FechaNacimiento,
+            Direccion: usuario.Direccion,
+            Domicilio: usuario.Domicilio,
+            Telefono: usuario.Telefono,
+            FechaInscripcion: usuario.FechaInscripcion,
+            NombreCategoria: categorias.NombreCategoria,
+            IDUsuario: usuario.IDUsuario,
+          };
+
+          if (nadador.entrenador == Entrenador.Entrenador) {
+            arrayNadadores.push(nuevaCategoria);
+          }
+        }
+      }
+      return arrayNadadores;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async findNadadoresBySocio(id: number) {
+    try {
+      const { data } = await this.httpClient.get(
+        `${BACK_END_URL}/users/findUsersNadadores`,
+      );
+      const { data: Socio } = await this.httpClient.get(
+        `${BACK_END_URL}/users/getById/` + id,
       );
 
       let arrayNadadores: P009GetNadadorDto[] = [];
@@ -155,9 +203,11 @@ export class P009Service {
             Telefono: usuario.Telefono,
             FechaInscripcion: usuario.FechaInscripcion,
             NombreCategoria: categorias.NombreCategoria,
+            IDUsuario: usuario.IDUsuario,
           };
-
-          arrayNadadores.push(nuevaCategoria);
+          if (nadador.socio == Socio.Socio) {
+            arrayNadadores.push(nuevaCategoria);
+          }
         }
       }
       return arrayNadadores;
