@@ -22,19 +22,12 @@ export class P006Service {
       const { data: usuarios } = await this.httpClient.get<UsuarioDto[]>(
         `${BACK_END_URL}/users/findAllActivated/`,
       );
-      //console.log(usuarios);
 
       for (let user of usuarios) {
-        //  console.log('dentro del for');
-        //  console.log(user);
-
         if (user.Nadador != null) {
-          //  console.log('dentro del if');
           const { data: tiemposNadador } = await this.httpClient.get<
             TiempoDto[]
           >(`${BACK_END_URL}/tiempos/findAllByNadador/` + user.Nadador);
-
-          // console.log(tiemposNadador);
 
           for (let tiempo of tiemposNadador) {
             t = {
@@ -52,7 +45,6 @@ export class P006Service {
               FechaMarcaNadador: tiempo.FechaMarcaNadador,
               IDTiempo: tiempo.IDTiempos,
             };
-            // console.log(t);
             tiemposFinales.push(t);
           }
         }

@@ -66,18 +66,17 @@ export class F009Service {
           IDNADADOR = nadador.idNadador;
         }
       } else if (createF009Dto.crearNadador) {
-        console.log('entroIf');
         let nadadorDto: CreateNadadorDto = {
           socioAsociado: createF009Dto.socioAsociado,
           entrenadorAsociado: createF009Dto.entrenadorAsociado,
           Categoria: createF009Dto.Categoria,
         };
-        console.log(nadadorDto);
+
         const { data: nadador } = await this.httpClient.post<NadadorDto>(
           `${BACK_END_URL}/nadadores/create`,
           { data: nadadorDto },
         );
-        console.log(nadador);
+
         IDNADADOR = nadador.idNadador;
       } else if (createF009Dto.crearEntrenador) {
         let entrenadorDto: CreateEntrenadoreDto = {
@@ -91,7 +90,6 @@ export class F009Service {
         );
         IDENTRENADOR = data.idEntrenador;
       }
-      console.log(createF009Dto.Domicilio);
       const User: CreateUsuarioDto = {
         Nombre: createF009Dto.Nombre,
         Apellido: createF009Dto.Apellido,
@@ -108,12 +106,12 @@ export class F009Service {
         juntaDirectiva: null,
         Habilitado: 1,
       };
-      console.log(User);
+
       const { status, data } = await this.httpClient.post(
         `${BACK_END_URL}/users/create`,
         { data: User },
       );
-      console.log(data);
+
       return data;
     } catch (error) {
       return error;

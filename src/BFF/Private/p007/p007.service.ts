@@ -74,6 +74,7 @@ export class P007Service {
             prueba: p007FiltrosDto.prueba,
             genero: p007FiltrosDto.genero,
             categoria: p007FiltrosDto.categoria,
+            campeonato: p007FiltrosDto.campeonato,
           },
         },
       );
@@ -92,35 +93,24 @@ export class P007Service {
           },
         },
       );
-      console.log({
-        IDNadador: p007FiltrosDto.IDNadador,
 
-        piscina: p007FiltrosDto.piscina,
-        estilo: p007FiltrosDto.estilo,
-        prueba: p007FiltrosDto.prueba,
-        genero: p007FiltrosDto.genero,
-        categoria: p007FiltrosDto.categoria,
-      });
-      console.log('Fin dto');
-      console.log(tiempos);
-      console.log(minimas);
       let MinimasGotten: P007Minima[] = [];
       for (let minima of minimas) {
-        for (let tiempo of tiempos) {
-          MinimasGotten.push({
-            IDMinima: minima.IDMinima,
-            TiempoMinimo: minima.TiempoMinimo,
-            Temporada: minima.Temporada,
-            Prueba: minima.Prueba,
-            Piscina: minima.Piscina,
-            Categoria: minima.Categoria,
-            Estilo: minima.Estilo,
-            Genero: minima.Genero,
-            FechaVigenciaMinima: minima.FechaVigenciaMinima,
-            Campeonato: minima.Campeonato,
-            Conseguida: minima.TiempoMinimo > tiempo.Tiempo ? true : false,
-          });
-        }
+        let tiempo = tiempos.find((t) => t.Tiempo <= minima.TiempoMinimo);
+
+        MinimasGotten.push({
+          IDMinima: minima.IDMinima,
+          TiempoMinimo: minima.TiempoMinimo,
+          Temporada: minima.Temporada,
+          Prueba: minima.Prueba,
+          Piscina: minima.Piscina,
+          Categoria: minima.Categoria,
+          Estilo: minima.Estilo,
+          Genero: minima.Genero,
+          FechaVigenciaMinima: minima.FechaVigenciaMinima,
+          Campeonato: minima.Campeonato,
+          Conseguida: tiempo ? minima.TiempoMinimo > tiempo.Tiempo : false,
+        });
       }
 
       return MinimasGotten;

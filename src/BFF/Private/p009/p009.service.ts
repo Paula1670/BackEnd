@@ -93,9 +93,9 @@ export class P009Service {
   async findAllNadadores() {
     try {
       const { data } = await this.httpClient.get(
-        `${BACK_END_URL}/users/findUsersNadadores/`,
+        `${BACK_END_URL}/users/findUsersNadadores`,
       );
-      //console.log(data);
+
       let arrayNadadores: P009GetNadadorDto[] = [];
 
       for (let usuario of data) {
@@ -120,7 +120,46 @@ export class P009Service {
           arrayNadadores.push(nuevaCategoria);
         }
       }
-      //console.log(arrayNadadores);
+      return arrayNadadores;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async findMisNadadores() {
+    try {
+      const { data } = await this.httpClient.get(
+        `${BACK_END_URL}/users/findUsersNadadores/`,
+      );
+
+      let arrayNadadores: P009GetNadadorDto[] = [];
+
+      for (let usuario of data) {
+        if (usuario.Habilitado) {
+          const { data: nadador } = await this.httpClient.get(
+            `${BACK_END_URL}/nadadores/getById/` + usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
+          );
+
+          const { data: categorias } = await this.httpClient.get(
+            `${BACK_END_URL}/categorias/findCategoriaByNadador/` +
+              usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
+          );
+
+          const nuevaCategoria: P009GetNadadorDto = {
+            Nombre: usuario.Nombre,
+            Apellido: usuario.Apellido,
+            Contrasena: usuario.Contrasena,
+            FechaNacimiento: usuario.FechaNacimiento,
+            Direccion: usuario.Direccion,
+            Domicilio: usuario.Domicilio,
+            Telefono: usuario.Telefono,
+            FechaInscripcion: usuario.FechaInscripcion,
+            NombreCategoria: categorias.NombreCategoria,
+          };
+
+          arrayNadadores.push(nuevaCategoria);
+        }
+      }
       return arrayNadadores;
     } catch (error) {
       return error;
