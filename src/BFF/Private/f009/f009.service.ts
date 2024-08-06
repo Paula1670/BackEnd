@@ -16,6 +16,9 @@ import { GeneroEnum } from 'src/Constantes/GeneroEnum';
 import { F009Get_EntrenadoresDto } from './dto/F009Get_EntrenadoresDto';
 import { BACK_END_URL } from 'src/Constantes/enviroment';
 import { F009GetNadadoresDto } from './dto/F009Get_NadadoresDto';
+import { ActualizarCategoriaDeNadadorDto } from '../p009/dto/P009actualizarCategoriaDeNadador.dto';
+import { P009GetNadadorDto } from '../p009/dto/P009GetNadadorDto';
+import { F009GetNadadorDto } from './dto/F009GetNadadorDto';
 
 @Injectable()
 export class F009Service {
@@ -240,6 +243,69 @@ export class F009Service {
       return nuevosEntrenadores;
     } catch (error) {
       throw error;
+    }
+  }
+
+  async findNadadoresByEntrenador(id: number) {
+    try {
+      const { data } = await this.httpClient.get(
+        `${BACK_END_URL}/users/findUsersNadadores`,
+      );
+
+      const { data: Entrenador } = await this.httpClient.get(
+        `${BACK_END_URL}/users/getById/` + id,
+      );
+      let arrayNadadores: F009GetNadadorDto[] = [];
+
+      for (let usuario of data) {
+        if (usuario.Habilitado) {
+          const { data: nadador } = await this.httpClient.get(
+            `${BACK_END_URL}/nadadores/getById/` + usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
+          );
+
+          const { data: categorias } = await this.httpClient.get(
+            `${BACK_END_URL}/categorias/findCategoriaByNadador/` +
+              usuario.Nadador, //Nadador es la FK a nadador de la tabla Usuario
+          );
+
+          const nuevaCategoria: P009GetNadadorDto = {
+            Nombre: usuario.Nombre,
+            Apellido: usuario.Apellido,
+            Contrasena: usuario.Contrasena,
+            FechaNacimiento: usuario.FechaNacimiento,
+            Direccion: usuario.Direccion,
+            Domicilio: usuario.Domicilio,
+            Telefono: usuario.Telefono,
+            FechaInscripcion: usuario.FechaInscripcion,
+            NombreCategoria: categorias.NombreCategoria,
+            IDUsuario: usuario.IDUsuario,
+          };
+
+          if (nadador.entrenador == Entrenador.Entrenador) {
+            arrayNadadores.push(nuevaCategoria);
+          }
+        }
+      }
+      return arrayNadadores;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async actualizarCategoriaDeNadador(idNadador: number, IDCategoria: number) {
+    try {
+      const nadadorDto: ActualizarCategoriaDeNadadorDto = {
+        idNadador: idNadador,
+        idCategoria: IDCategoria,
+      };
+      const { data } = await this.httpClient.put(
+        `${BACK_END_URL}/nadadores/actualizarCategoriaDeNadador`,
+        { data: nadadorDto },
+      );
+
+      return data;
+    } catch (error) {
+      return error;
     }
   }
 }

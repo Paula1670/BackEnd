@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { F009Service } from './f009.service';
 import { F009Create_UserDto } from './dto/create-f009.dto';
 import { F009Editar_UserDto } from './dto/update-f009.dto';
+import { ActualizarCategoriaDeNadadorDto } from '../p009/dto/P009actualizarCategoriaDeNadador.dto';
 
 @Controller('F009')
 export class F009Controller {
@@ -51,5 +53,20 @@ export class F009Controller {
   @Get('/findEntrenadores')
   findEntrenadores() {
     return this.f009Service.findEntrenadores();
+  }
+
+  @Put('/actualizarCategoriaDeNadador')
+  actualizarCategoriaDeNadador(
+    @Body() actualizarCategoriaDeNadadorDto: ActualizarCategoriaDeNadadorDto,
+  ) {
+    return this.f009Service.actualizarCategoriaDeNadador(
+      actualizarCategoriaDeNadadorDto.idNadador,
+      actualizarCategoriaDeNadadorDto.idCategoria,
+    );
+  }
+
+  @Get('/findNadadoresByEntrenador/:id')
+  findNadadoresByEntrenador(@Param('id') id: string) {
+    return this.f009Service.findNadadoresByEntrenador(+id);
   }
 }
