@@ -215,20 +215,22 @@ export class F009Service {
       throw error;
     }
   }
-
+  /*
   async findEntrenadores(): Promise<F009Get_EntrenadoresDto[]> {
     try {
       const { data: entrenadores } = await this.httpClient.get(
         `${BACK_END_URL}/entrenadores/getAll`,
       );
-
+      console.log(entrenadores);
       const nuevosEntrenadores: F009Get_EntrenadoresDto[] = [];
 
       for (let entrenador of entrenadores) {
+        console.log(entrenador);
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserByEntrenadorId/` +
             entrenador.idEntrenador,
         );
+        console.log(usuario.Habilitado);
         if (usuario.Habilitado) {
           const nuevoEntrenador: F009Get_EntrenadoresDto = {
             IDEntrenador: entrenador.idEntrenador,
@@ -236,6 +238,7 @@ export class F009Service {
             apellidoUsuario: usuario.Apellido,
           };
 
+          console.log(nuevoEntrenador);
           nuevosEntrenadores.push(nuevoEntrenador);
         }
       }
@@ -243,6 +246,34 @@ export class F009Service {
       return nuevosEntrenadores;
     } catch (error) {
       throw error;
+    }
+  }*/
+
+  async findEntrenadores() {
+    try {
+      const { data: Usuario } = await this.httpClient.get(
+        `${BACK_END_URL}/users/findUsersEntrenadores/`,
+      );
+      console.log(Usuario);
+      let Arrayentrenadores: F009Get_EntrenadoresDto[] = [];
+      for (let entrenador of Usuario) {
+        console.log(entrenador);
+        if (entrenador.Habilitado) {
+          // entrenadores.push(entrenador);
+
+          const nuevoEntrenador: F009Get_EntrenadoresDto = {
+            IDEntrenador: entrenador.Entrenador,
+            nombreUsuario: entrenador.Nombre,
+            apellidoUsuario: entrenador.Apellido,
+          };
+          console.log(nuevoEntrenador);
+          Arrayentrenadores.push(nuevoEntrenador);
+        }
+      }
+      console.log(Arrayentrenadores);
+      return Arrayentrenadores;
+    } catch (error) {
+      return error;
     }
   }
 
