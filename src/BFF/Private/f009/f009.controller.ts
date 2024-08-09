@@ -59,6 +59,7 @@ export class F009Controller {
   actualizarCategoriaDeNadador(
     @Body() actualizarCategoriaDeNadadorDto: ActualizarCategoriaDeNadadorDto,
   ) {
+    console.log('hola');
     return this.f009Service.actualizarCategoriaDeNadador(
       actualizarCategoriaDeNadadorDto.idNadador,
       actualizarCategoriaDeNadadorDto.idCategoria,

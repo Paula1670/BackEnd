@@ -333,7 +333,7 @@ export class F009Service {
         `${BACK_END_URL}/nadadores/actualizarCategoriaDeNadador`,
         { data: nadadorDto },
       );
-
+      console.log(nadadorDto);
       return data;
     } catch (error) {
       return error;

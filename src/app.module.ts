@@ -47,6 +47,7 @@ import { DatosContactoModule } from './Domain/datos-contacto/datos-contacto.modu
 import { PFooterModule } from './BFF/Public/p-footer/p-footer.module';
 import { FFooterModule } from './BFF/Public/f-footer/f-footer.module';
 import { F003Module } from './BFF/Private/f003/f003.module';
+import { F011Module } from './BFF/Private/f011/f011.module';
 
 @Module({
   imports: [
@@ -110,6 +111,7 @@ import { F003Module } from './BFF/Private/f003/f003.module';
     PFooterModule,
     FFooterModule,
     F003Module,
+    F011Module,
   ],
   controllers: [],
   providers: [],
