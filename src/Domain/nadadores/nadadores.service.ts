@@ -137,9 +137,23 @@ export class NadadoresService {
       where: { idNadador: idNadador },
       relations: ['Categoria'],
     });
-
+    console.log('dominio');
+    console.log(nadador);
     nadador.Categoria = new CategoriaEntity();
     nadador.Categoria.IDCategoria = IDcategoria;
+
+    this.save(nadador);
+    console.log(nadador);
+    return nadador;
+  }
+
+  async actualizarEntrenadorDeNadador(idNadador: number, IDentrenador: number) {
+    let nadador: NadadorEntity = await this.nadadorRepository.findOne({
+      where: { idNadador: idNadador },
+      relations: ['entrenador'],
+    });
+    nadador.entrenador = new EntrenadorEntity();
+    nadador.entrenador.idEntrenador = IDentrenador;
 
     this.save(nadador);
     return nadador;

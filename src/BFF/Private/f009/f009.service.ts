@@ -266,11 +266,10 @@ export class F009Service {
             nombreUsuario: entrenador.Nombre,
             apellidoUsuario: entrenador.Apellido,
           };
-          console.log(nuevoEntrenador);
+
           Arrayentrenadores.push(nuevoEntrenador);
         }
       }
-      console.log(Arrayentrenadores);
       return Arrayentrenadores;
     } catch (error) {
       return error;

@@ -12,6 +12,7 @@ import { NadadoresService } from './nadadores.service';
 import { CreateNadadorDto } from './dto/create-nadador.dto';
 import { UpdateNadadoreDto } from './dto/update-nadadore.dto';
 import { ActualizarCategoriaDeNadadorDto } from './dto/actualizarCategoriaDeNadador.dto';
+import { ActualizarEntrenadorDeNadadorDto } from './dto/actualizarEntrenadorDeNadador.dto';
 
 @Controller('nadadores')
 export class NadadoresController {
@@ -45,13 +46,23 @@ export class NadadoresController {
     return this.nadadoresService.remove(+id);
   }
 
+  @Put('/actualizarEntrenadorDeNadador')
+  actualizarEntrenadorDeNadador(
+    @Body() actualizarEntrenadorDeNadador: ActualizarEntrenadorDeNadadorDto,
+  ) {
+    return this.nadadoresService.actualizarEntrenadorDeNadador(
+      actualizarEntrenadorDeNadador.idNadador,
+      actualizarEntrenadorDeNadador.idEntrenador,
+    );
+  }
+
   @Put('/actualizarCategoriaDeNadador')
   actualizarCategoriaDeNadador(
-    @Body() actualizarCategoriaDeNadadorDto: ActualizarCategoriaDeNadadorDto,
+    @Body() actualizarCategoriaDeNadador: ActualizarCategoriaDeNadadorDto,
   ) {
     return this.nadadoresService.actualizarCategoriaDeNadador(
-      actualizarCategoriaDeNadadorDto.idNadador,
-      actualizarCategoriaDeNadadorDto.idCategoria,
+      actualizarCategoriaDeNadador.idNadador,
+      actualizarCategoriaDeNadador.idCategoria,
     );
   }
 }
