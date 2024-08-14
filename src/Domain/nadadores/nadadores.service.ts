@@ -137,13 +137,10 @@ export class NadadoresService {
       where: { idNadador: idNadador },
       relations: ['Categoria'],
     });
-    console.log('dominio');
-    console.log(nadador);
     nadador.Categoria = new CategoriaEntity();
     nadador.Categoria.IDCategoria = IDcategoria;
 
     this.save(nadador);
-    console.log(nadador);
     return nadador;
   }
 

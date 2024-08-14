@@ -12,18 +12,14 @@ export class F011Service {
   constructor(private readonly httpClient: HttpClientService) {}
   async actualizarCategoriaDeNadador(idNadador: number, IDCategoria: number) {
     try {
-      console.log(idNadador);
-      console.log(IDCategoria);
       const nadadorDto: ActualizarCategoriaDeNadadorDto = {
         idNadador: idNadador,
         idCategoria: IDCategoria,
       };
-      console.log(nadadorDto);
       const { data } = await this.httpClient.put(
         `${BACK_END_URL}/nadadores/actualizarCategoriaDeNadador`,
         { data: nadadorDto },
       );
-      console.log(data);
       return data;
     } catch (error) {
       return error;
