@@ -109,7 +109,7 @@ export class F009Service {
         juntaDirectiva: null,
         Habilitado: 1,
       };
-
+      console.log(User);
       const { status, data } = await this.httpClient.post(
         `${BACK_END_URL}/users/create`,
         { data: User },
