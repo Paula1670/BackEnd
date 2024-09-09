@@ -10,6 +10,7 @@ import { LogInAuthResponseDto } from './dto/logIn_auth_response.dto';
 import { EntrenadorDto } from '../entrenadores/dto/entrenador.dto.';
 import { JuntadirectivaService } from '../juntadirectiva/juntadirectiva.service';
 import { JuntadirectivaDto } from '../juntadirectiva/dto/juntadirectiva.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +28,12 @@ export class AuthService {
     if (!user)
       throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
 
-    if (logInAuthDto.contrasena != user.Contrasena)
+    const areSame = await bcrypt.compare(
+      logInAuthDto.contrasena,
+      user.Contrasena,
+    );
+
+    if (!areSame)
       throw new HttpException('Contraseña incorrecta', HttpStatus.UNAUTHORIZED);
 
     const payload = { direccion: user.Direccion, sub: user.IDUsuario };

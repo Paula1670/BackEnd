@@ -9,6 +9,7 @@ import { SocioEntity } from '../socios/entities/socio.entity';
 import { EntrenadorEntity } from '../entrenadores/entities/entrenadore.entity';
 import { UsuarioDto } from './dto/usuario.dto';
 import { JuntaDirectivaEntity } from '../juntadirectiva/entities/juntadirectiva.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsuarioService {
@@ -30,10 +31,18 @@ export class UsuarioService {
     let JuntaDirectiva = new JuntaDirectivaEntity();
     JuntaDirectiva.idMiembroJunta = createUsuarioDto.juntaDirectiva;
 
+    const saltRounds = 10; // Puedes ajustar la cantidad de rondas según sea necesario
+
+    // Hasheamos la contraseña antes de guardar al usuario
+    const hashedPassword = await bcrypt.hash(
+      createUsuarioDto.Contrasena,
+      saltRounds,
+    );
+
     const newUser = await this.usuarioRepository.save({
       Nombre: createUsuarioDto.Nombre,
       Apellido: createUsuarioDto.Apellido,
-      Contrasena: createUsuarioDto.Contrasena,
+      Contrasena: hashedPassword, // Guardamos la contraseña hasheada
       FechaNacimiento: createUsuarioDto.FechaNacimiento,
       Direccion: createUsuarioDto.Direccion,
       Domicilio: createUsuarioDto.Domicilio,
@@ -75,6 +84,12 @@ export class UsuarioService {
     editedUser.Socio = Socio;
     editedUser.Entrenador = Entrenador;
     editedUser.juntaDirectiva = JuntaDirectiva;
+
+    const saltRounds = 10; // Puedes ajustar la cantidad de rondas según sea necesario
+
+    // Hasheamos la contraseña antes de guardar al usuario
+    const hashedPassword = await bcrypt.hash(editedUser.Contrasena, saltRounds);
+    editedUser.Contrasena = hashedPassword;
 
     return await this.usuarioRepository.save(editedUser);
   }
