@@ -24,19 +24,21 @@ export class P010Service {
         `${BACK_END_URL}/users/findUserBySocioId/` + contrato.Socio,
       );
 
-      nuevoContrato = {
-        IDMiCuota: contrato.IDMiCuota,
-        IDUsuario: Usuario.IDUsuario,
-        IDCuota: cuotaDelContrato.IdCuota,
-        NombreContrato: cuotaDelContrato.Nombre,
-        FechaInicio: contrato.FechaInicio,
-        FechaVencimiento: contrato.FechaVencimiento,
-        Estado: contrato.Estado,
-        Precio: cuotaDelContrato.Precio,
-        NombreUsuario: Usuario.Nombre,
-        ApellidoUsuario: Usuario.Apellido,
-      };
-      resultado.push(nuevoContrato);
+      if (Usuario.Habilitado) {
+        nuevoContrato = {
+          IDMiCuota: contrato.IDMiCuota,
+          IDUsuario: Usuario.IDUsuario,
+          IDCuota: cuotaDelContrato.IdCuota,
+          NombreContrato: cuotaDelContrato.Nombre,
+          FechaInicio: contrato.FechaInicio,
+          FechaVencimiento: contrato.FechaVencimiento,
+          Estado: contrato.Estado,
+          Precio: cuotaDelContrato.Precio,
+          NombreUsuario: Usuario.Nombre,
+          ApellidoUsuario: Usuario.Apellido,
+        };
+        resultado.push(nuevoContrato);
+      }
     }
 
     return resultado;

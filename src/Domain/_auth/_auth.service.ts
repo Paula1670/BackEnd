@@ -23,7 +23,6 @@ export class AuthService {
   async logIn(logInAuthDto: LogInAuthDto): Promise<LogInAuthResponseDto> {
     let user: UsuarioDto;
     let miembro: JuntadirectivaDto = null;
-
     user = await this.usuarioService.findByDirecccion(logInAuthDto.direccion);
     if (!user)
       throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
@@ -32,17 +31,14 @@ export class AuthService {
       logInAuthDto.contrasena,
       user.Contrasena,
     );
-
     if (!areSame)
       throw new HttpException('Contraseña incorrecta', HttpStatus.UNAUTHORIZED);
 
     const payload = { direccion: user.Direccion, sub: user.IDUsuario };
     const token = this.jwtService.sign(payload);
-
     if (user.juntaDirectiva) {
       miembro = await this.juntaService.findOne(user.juntaDirectiva);
     }
-
     return {
       token: token,
       idUsuario: user.IDUsuario,

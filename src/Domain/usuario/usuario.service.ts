@@ -21,24 +21,18 @@ export class UsuarioService {
   async create(createUsuarioDto: CreateUsuarioDto): Promise<UsuarioEntity> {
     let Socio = new SocioEntity();
     Socio.idSocio = createUsuarioDto.Socio;
-
     let Entrenador = new EntrenadorEntity();
     Entrenador.idEntrenador = createUsuarioDto.Entrenador;
-
     let Nadador = new NadadorEntity();
     Nadador.idNadador = createUsuarioDto.Nadador;
-
     let JuntaDirectiva = new JuntaDirectivaEntity();
     JuntaDirectiva.idMiembroJunta = createUsuarioDto.juntaDirectiva;
 
-    const saltRounds = 10; // Puedes ajustar la cantidad de rondas según sea necesario
-
-    // Hasheamos la contraseña antes de guardar al usuario
+    const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(
       createUsuarioDto.Contrasena,
       saltRounds,
     );
-
     const newUser = await this.usuarioRepository.save({
       Nombre: createUsuarioDto.Nombre,
       Apellido: createUsuarioDto.Apellido,
@@ -64,19 +58,14 @@ export class UsuarioService {
     updateUsuarioDto: UpdateUsuarioDto,
   ): Promise<UsuarioEntity> {
     const User = await this.usuarioRepository.findOneBy({ IDUsuario: id });
-
     let Nadador = new NadadorEntity();
     Nadador.idNadador = updateUsuarioDto.Nadador;
-
     let Entrenador = new EntrenadorEntity();
     Entrenador.idEntrenador = updateUsuarioDto.Entrenador;
-
     let Socio = new SocioEntity();
     Socio.idSocio = updateUsuarioDto.Socio;
-
     let JuntaDirectiva = new JuntaDirectivaEntity();
     JuntaDirectiva.idMiembroJunta = updateUsuarioDto.juntaDirectiva;
-
     if (!User) throw new NotFoundException('Este post no existe');
     const editedUser: UsuarioEntity = Object.assign(User, updateUsuarioDto);
 
