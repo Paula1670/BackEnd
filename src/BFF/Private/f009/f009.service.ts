@@ -109,7 +109,7 @@ export class F009Service {
         juntaDirectiva: null,
         Habilitado: 1,
       };
-      console.log(User);
+
       const { status, data } = await this.httpClient.post(
         `${BACK_END_URL}/users/create`,
         { data: User },
@@ -163,14 +163,14 @@ export class F009Service {
       const { data: socios } = await this.httpClient.get(
         `${BACK_END_URL}/socios/getAll`,
       );
-      console.log(socios);
+  
       const nuevosSocios: F009GetSociosDto[] = [];
 
       for (let socio of socios) {
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserBySocioId/` + socio.idSocio,
         );
-        console.log(usuario);
+
         if (usuario.Habilitado) {
           const nuevoSocio: F009GetSociosDto = {
             IDSocio: socio.idSocio,
