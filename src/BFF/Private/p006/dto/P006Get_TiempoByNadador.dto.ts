@@ -14,4 +14,5 @@ export class P006Get_TiempoByNadadorDto {
   CumpleMinima: boolean;
   IDCategoria: number;
   IDUsuario: number;
+  FechaMarcaNadador:Date;
 }

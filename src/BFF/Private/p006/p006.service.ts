@@ -120,6 +120,7 @@ export class P006Service {
           CumpleMinima: true,
           IDCategoria: tiempo.IDCategoria,
           IDUsuario: usuario.IDUsuario,
+          FechaMarcaNadador: tiempo.FechaMarcaNadador
         };
 
         tiemposFinales.push(t);
