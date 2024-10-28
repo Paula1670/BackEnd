@@ -149,10 +149,11 @@ export class TiemposService {
     const query = this.tiempoRepository
       .createQueryBuilder('t')
       .innerJoin('usuarios', 'u', 'u.nadador = t.IDNadador')
-      .innerJoin('nadadores', 'n', 'n.IDNadador = u.nadador');
+      .innerJoin('nadadores', 'n', 'n.idNadador = u.nadador');
 
     if (filters?.IDNadador) {
       query.andWhere('t.IDNadador = :IDNadador', {
+        
         IDNadador: filters.IDNadador,
       });
     }
@@ -174,6 +175,7 @@ export class TiemposService {
         categoria: filters.categoria,
       });
     }
+    console.log(filters);
     return this.entitysToDtos(await query.getMany());
   }
 }

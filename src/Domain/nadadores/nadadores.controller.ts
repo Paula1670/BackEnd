@@ -33,6 +33,11 @@ export class NadadoresController {
     return this.nadadoresService.findOne(+id);
   }
 
+ /* @Get('/findNadadorByUserId/:id')
+  findNadadorByUserId(@Param('id') id: string) {
+    return this.nadadoresService.findNadadorByUserId(+id);
+  }*/
+
   @Patch('/edit/:id')
   update(
     @Param('id') id: string,

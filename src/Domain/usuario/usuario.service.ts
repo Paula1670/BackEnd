@@ -338,4 +338,21 @@ export class UsuarioService {
       }),
     );
   }
+
+  async findNadadorByUserId(usuarioId: number) {
+    const usuario = await this.usuarioRepository.findOne({
+      where: { IDUsuario: usuarioId },
+      relations: ['Nadador'],
+    });
+  
+    if (!usuario) {
+      throw new NotFoundException(
+        `Nadador asociado al usuario con ID ${usuarioId} no encontrado`,
+      );
+    }
+  
+    return usuario.Nadador.idNadador;
+  }
+  
+ 
 }

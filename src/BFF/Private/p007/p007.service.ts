@@ -60,7 +60,12 @@ export class P007Service {
       return error;
     }
   }*/
-
+  async findNadadorByUserId(id:number){
+    const { data: idN } = await this.httpClient.get(
+      `${BACK_END_URL}/users/findNadadorByUserId/` + id,
+    );
+    return idN;
+  }
   async findMinimasByFilters(
     p007FiltrosDto: P007FiltrosDto,
   ): Promise<P007Minima[]> {
@@ -92,9 +97,11 @@ export class P007Service {
           },
         },
       );
+      console.log(tiempos);
+      console.log("------------");
       let MinimasGotten: P007Minima[] = [];
       for (let minima of minimas) {
-        let tiempo = tiempos.find((t) => t.Tiempo <= minima.TiempoMinimo);
+        let tiempo = tiempos.find((t) => t.Estilo==minima.Estilo &&t.Prueba==minima.Prueba &&t.Piscina==minima.Piscina && t.Tiempo <= minima.TiempoMinimo);
 
         MinimasGotten.push({
           IDMinima: minima.IDMinima,
@@ -107,15 +114,17 @@ export class P007Service {
           Genero: minima.Genero,
           FechaVigenciaMinima: minima.FechaVigenciaMinima,
           Campeonato: minima.Campeonato,
-          Conseguida: tiempo ? minima.TiempoMinimo > tiempo.Tiempo : false,
+          Conseguida: tiempo ? true : false,
         });
       }
-
+console.log(MinimasGotten);
       return MinimasGotten;
     } catch (error) {
       return error;
     }
   }
+
+ 
 
   async GetGeneroCategoriaByIDUser(id: number) {
     try {

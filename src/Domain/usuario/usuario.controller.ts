@@ -31,6 +31,11 @@ export class UsuarioController {
     return this.usuarioService.findAllInactivated();
   }
 
+  @Get('/findNadadorByUserId/:id')
+  findNadadorByUserId(@Param('id') id: string) {
+    return this.usuarioService.findNadadorByUserId(+id);
+  }
+
   @Get('/getById/:id')
   findOne(@Param('id') id: string) {
     return this.usuarioService.findOne(+id);

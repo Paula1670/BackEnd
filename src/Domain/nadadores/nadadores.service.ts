@@ -111,20 +111,24 @@ export class NadadoresService {
     return nadadorDto;
   }
 
-  /*async findNadadorByUserId(usuarioId: number): Promise<NadadorEntity> {
+  /*async findNadadorByUserId(usuarioId: number): Promise<number> {
+    // Busca el registro en la tabla de nadador, incluyendo la relación con usuario
     const nadador = await this.nadadorRepository.findOne({
       where: { usuario: { IDUsuario: usuarioId } },
       relations: ['usuario'],
     });
-
+  
+    // Si no encuentra un nadador asociado, lanza una excepción
     if (!nadador) {
       throw new NotFoundException(
-        `Socio asociado al usuario con ID ${usuarioId} no encontrado`,
+        `Nadador asociado al usuario con ID ${usuarioId} no encontrado`,
       );
     }
-
-    return nadador;
+  
+    // Devuelve solo el campo 'nadador'
+    return nadador.idNadador;
   }*/
+  
 
   async save(nadadorEntity: NadadorEntity): Promise<NadadorEntity> {
     const newNadador = await this.nadadorRepository.save(nadadorEntity);
