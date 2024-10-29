@@ -11,7 +11,8 @@ import {
 import { F009Service } from './f009.service';
 import { F009Create_UserDto } from './dto/create-f009.dto';
 import { F009Editar_UserDto } from './dto/update-f009.dto';
-import { ActualizarCategoriaDeNadadorDto } from '../p009/dto/P009actualizarCategoriaDeNadador.dto';
+import { ActualizarCategoriaDeNadadorDto } from './dto/F009actualizarCategoriaDeNadador.dto';
+import { ActualizarContrasena } from '../p009/dto/P009actualizarContrasena.dto';
 
 @Controller('F009')
 export class F009Controller {
@@ -64,6 +65,17 @@ export class F009Controller {
       actualizarCategoriaDeNadadorDto.idCategoria,
     );
   }
+
+  @Put('/actualizarContrasena')
+  actualizarContrasena(
+    @Body() actualizarContrasenaDeUsuario: ActualizarContrasena,
+  ) {
+    return this.f009Service.actualizarContrasena(
+      actualizarContrasenaDeUsuario.IDUsuario,
+      actualizarContrasenaDeUsuario.Contrasena,
+    );
+  }
+
 
   @Get('/findNadadoresByEntrenador/:id')
   findNadadoresByEntrenador(@Param('id') id: string) {
