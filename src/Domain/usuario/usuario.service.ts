@@ -76,11 +76,11 @@ export class UsuarioService {
     editedUser.Entrenador = Entrenador;
     editedUser.juntaDirectiva = JuntaDirectiva;
 
-    const saltRounds = 10; // Puedes ajustar la cantidad de rondas según sea necesario
+   /* const saltRounds = 10; // Puedes ajustar la cantidad de rondas según sea necesario
 
     // Hasheamos la contraseña antes de guardar al usuario
     const hashedPassword = await bcrypt.hash(editedUser.Contrasena, saltRounds);
-    editedUser.Contrasena = hashedPassword;
+    editedUser.Contrasena = hashedPassword;*/
 
     return await this.usuarioRepository.save(editedUser);
   }

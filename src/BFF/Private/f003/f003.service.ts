@@ -20,11 +20,13 @@ export class F003Service {
       const { data: usuario } = await this.httpClient.get<UsuarioDto>(
         `${BACK_END_URL}/users/getById/` + id,
       );
+      console.log(usuario);
 
       const { data: miembroJunta } = await this.httpClient.post(
         `${BACK_END_URL}/juntadirectiva/create`,
         { data: createF003Dto },
       );
+   
       usuario.juntaDirectiva = miembroJunta.idMiembroJunta;
       const { data: usuarioFinal } = await this.httpClient.patch(
         `${BACK_END_URL}/users/edit/` + usuario.IDUsuario,
@@ -34,6 +36,7 @@ export class F003Service {
           },
         },
       );
+      console.log(usuarioFinal);
 
       return miembroJunta;
     } catch (error) {
