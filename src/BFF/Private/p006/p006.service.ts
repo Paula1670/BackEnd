@@ -9,6 +9,7 @@ import { UsuarioDto } from 'src/Domain/usuario/dto/usuario.dto';
 import { availableParallelism } from 'os';
 import { P006Get_TiempoByNadadorDto } from './dto/P006Get_TiempoByNadador.dto';
 import { CategoriaEnum } from 'src/Constantes/CategoriaEnum';
+import { NadadorDto } from 'src/Domain/nadadores/dto/nadador.dto';
 
 @Injectable()
 export class P006Service {
@@ -28,6 +29,8 @@ export class P006Service {
           const { data: tiemposNadador } = await this.httpClient.get<
             TiempoDto[]
           >(`${BACK_END_URL}/tiempos/findAllByNadador/` + user.Nadador);
+
+    
 
           for (let tiempo of tiemposNadador) {
             t = {
@@ -62,10 +65,13 @@ export class P006Service {
         await this.httpClient.get(
           `${BACK_END_URL}/tiempos/findAllByNadador/` + id,
         );
-
+        console.log(tiemposNadador);
+        console.log("-------------");
       let TiemposUsuario: P006Get_TiempoDto[] = [];
 
       for (let tiempoNadador of tiemposNadador) {
+        console.log(tiempoNadador);
+        console.log("-------------");
         let filter = {
           temporada: tiempoNadador.Temporada,
           piscina: tiempoNadador.Piscina,
@@ -78,11 +84,14 @@ export class P006Service {
           `${BACK_END_URL}/minimas/findMinimasByFilters`,
           { data: filter },
         );
-
+        console.log(minima);
+        console.log("-------------");
+        if(minima.length>0){
         if (tiempoNadador.Tiempo <= minima[0].TiempoMinimo) {
           TiemposUsuario.push(tiempoNadador);
-        }
+        }}
       }
+      console.log(TiemposUsuario);
       return TiemposUsuario;
     } catch (error) {
       return error;
@@ -111,6 +120,7 @@ export class P006Service {
           CumpleMinima: true,
           IDCategoria: tiempo.IDCategoria,
           IDUsuario: usuario.IDUsuario,
+          FechaMarcaNadador: tiempo.FechaMarcaNadador
         };
 
         tiemposFinales.push(t);

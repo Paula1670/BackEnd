@@ -11,6 +11,7 @@ import {
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { ActualizarContrasena } from 'src/BFF/Private/p009/dto/P009actualizarContrasena.dto';
 
 @Controller('users')
 export class UsuarioController {
@@ -29,6 +30,11 @@ export class UsuarioController {
   @Get('/findAllInactivated')
   findAllInactivated() {
     return this.usuarioService.findAllInactivated();
+  }
+
+  @Get('/findNadadorByUserId/:id')
+  findNadadorByUserId(@Param('id') id: string) {
+    return this.usuarioService.findNadadorByUserId(+id);
   }
 
   @Get('/getById/:id')
@@ -99,5 +105,15 @@ export class UsuarioController {
   @Get('/getAll')
   getAll() {
     return this.usuarioService.getAll();
+ 
+  }
+  @Put('/actualizarContrasena')
+  actualizarContrasena(
+    @Body() actualizarContrasena: ActualizarContrasena,
+  ) {
+    return this.usuarioService.actualizarContrasena(
+      actualizarContrasena.IDUsuario,
+      actualizarContrasena.Contrasena,
+    );
   }
 }

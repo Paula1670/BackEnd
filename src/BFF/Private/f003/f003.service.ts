@@ -46,11 +46,9 @@ export class F003Service {
       const { data: usuario } = await this.httpClient.get(
         `${BACK_END_URL}/users/getById/` + id,
       );
-
       const { status, data } = await this.httpClient.get(
         `${BACK_END_URL}/juntadirectiva/getById/` + usuario.juntaDirectiva,
-      );
-
+      );    
       return data;
     } catch (error) {
       return error;

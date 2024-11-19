@@ -19,6 +19,7 @@ import { F009GetNadadoresDto } from './dto/F009Get_NadadoresDto';
 import { ActualizarCategoriaDeNadadorDto } from '../p009/dto/P009actualizarCategoriaDeNadador.dto';
 import { P009GetNadadorDto } from '../p009/dto/P009GetNadadorDto';
 import { F009GetNadadorDto } from './dto/F009GetNadadorDto';
+import { ActualizarContrasena } from '../p009/dto/P009actualizarContrasena.dto';
 
 @Injectable()
 export class F009Service {
@@ -163,14 +164,14 @@ export class F009Service {
       const { data: socios } = await this.httpClient.get(
         `${BACK_END_URL}/socios/getAll`,
       );
-      console.log(socios);
+  
       const nuevosSocios: F009GetSociosDto[] = [];
 
       for (let socio of socios) {
         const { data: usuario } = await this.httpClient.get(
           `${BACK_END_URL}/users/findUserBySocioId/` + socio.idSocio,
         );
-        console.log(usuario);
+
         if (usuario.Habilitado) {
           const nuevoSocio: F009GetSociosDto = {
             IDSocio: socio.idSocio,
@@ -297,6 +298,22 @@ export class F009Service {
       const { data } = await this.httpClient.put(
         `${BACK_END_URL}/nadadores/actualizarCategoriaDeNadador`,
         { data: nadadorDto },
+      );
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async actualizarContrasena(idUsuario: number, contrasena: string) {
+    try {
+      const contrasenaDto: ActualizarContrasena = {
+        IDUsuario: idUsuario,
+        Contrasena: contrasena,
+      };
+      const { data } = await this.httpClient.put(
+        `${BACK_END_URL}/users/actualizarContrasena`,
+        { data: contrasenaDto },
       );
       return data;
     } catch (error) {

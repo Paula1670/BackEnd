@@ -41,6 +41,11 @@ export class P007Controller {
     return this.p007Service.findMinimasByFilters(findP007Dto);
   }
 
+  @Get('/findNadadorByUserId/:id')
+  findNadadorByUserId(@Param('id') id: number) {
+    return this.p007Service.findNadadorByUserId(id);
+  }
+
   @Get('/GetGeneroCategoriaByIDUser/:id')
   GetGeneroCategoriaByIDUser(@Param('id') id: number) {
     return this.p007Service.GetGeneroCategoriaByIDUser(id);
