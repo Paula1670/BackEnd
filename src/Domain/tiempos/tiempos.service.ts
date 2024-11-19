@@ -175,7 +175,7 @@ export class TiemposService {
         categoria: filters.categoria,
       });
     }
-    console.log(filters);
+
     return this.entitysToDtos(await query.getMany());
   }
 }

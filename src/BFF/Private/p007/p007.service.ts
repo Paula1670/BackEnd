@@ -97,8 +97,7 @@ export class P007Service {
           },
         },
       );
-      console.log(tiempos);
-      console.log("------------");
+   
       let MinimasGotten: P007Minima[] = [];
       for (let minima of minimas) {
         let tiempo = tiempos.find((t) => t.Estilo==minima.Estilo &&t.Prueba==minima.Prueba &&t.Piscina==minima.Piscina && t.Tiempo <= minima.TiempoMinimo);
@@ -117,7 +116,7 @@ export class P007Service {
           Conseguida: tiempo ? true : false,
         });
       }
-console.log(MinimasGotten);
+
       return MinimasGotten;
     } catch (error) {
       return error;

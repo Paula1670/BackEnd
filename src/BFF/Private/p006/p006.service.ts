@@ -65,13 +65,11 @@ export class P006Service {
         await this.httpClient.get(
           `${BACK_END_URL}/tiempos/findAllByNadador/` + id,
         );
-        console.log(tiemposNadador);
-        console.log("-------------");
+   
       let TiemposUsuario: P006Get_TiempoDto[] = [];
 
       for (let tiempoNadador of tiemposNadador) {
-        console.log(tiempoNadador);
-        console.log("-------------");
+   
         let filter = {
           temporada: tiempoNadador.Temporada,
           piscina: tiempoNadador.Piscina,
@@ -84,14 +82,13 @@ export class P006Service {
           `${BACK_END_URL}/minimas/findMinimasByFilters`,
           { data: filter },
         );
-        console.log(minima);
-        console.log("-------------");
+
         if(minima.length>0){
         if (tiempoNadador.Tiempo <= minima[0].TiempoMinimo) {
           TiemposUsuario.push(tiempoNadador);
         }}
       }
-      console.log(TiemposUsuario);
+   
       return TiemposUsuario;
     } catch (error) {
       return error;

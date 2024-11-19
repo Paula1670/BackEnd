@@ -33,7 +33,7 @@ export class UsuarioService {
       createUsuarioDto.Contrasena,
       saltRounds,
     );
-    console.log(hashedPassword);
+
 
     const newUser = await this.usuarioRepository.save({
       Nombre: createUsuarioDto.Nombre,
@@ -76,11 +76,7 @@ export class UsuarioService {
     editedUser.Entrenador = Entrenador;
     editedUser.juntaDirectiva = JuntaDirectiva;
 
-   /* const saltRounds = 10; // Puedes ajustar la cantidad de rondas según sea necesario
-
-    // Hasheamos la contraseña antes de guardar al usuario
-    const hashedPassword = await bcrypt.hash(editedUser.Contrasena, saltRounds);
-    editedUser.Contrasena = hashedPassword;*/
+  
 
     return await this.usuarioRepository.save(editedUser);
   }
