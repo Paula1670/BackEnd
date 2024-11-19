@@ -31,6 +31,9 @@ export class AuthService {
       logInAuthDto.contrasena,
       user.Contrasena,
     );
+    console.log( user.Contrasena);
+    console.log("-------------------------");
+    console.log( logInAuthDto.contrasena);
     if (!areSame)
       throw new HttpException('Contraseña incorrecta', HttpStatus.UNAUTHORIZED);
 

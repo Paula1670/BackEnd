@@ -33,6 +33,8 @@ export class UsuarioService {
       createUsuarioDto.Contrasena,
       saltRounds,
     );
+    console.log(hashedPassword);
+
     const newUser = await this.usuarioRepository.save({
       Nombre: createUsuarioDto.Nombre,
       Apellido: createUsuarioDto.Apellido,
